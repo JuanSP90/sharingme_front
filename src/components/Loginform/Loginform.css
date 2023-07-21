@@ -208,3 +208,23 @@ h6 span {
     color: white;
     box-shadow: 0 8px 24px 0 rgba(16, 39, 112, .2);
 }
+
+.error-message:before {
+    border-bottom-color: red !important;
+}
+
+.error-message {
+    font-size: 12px;
+    color: red;
+    text-align: left;
+    margin: 5px 0;
+}
+
+.error-input {
+    border-color: red;
+}
+
+/* Asegúrate de que el estilo del borde inferior para el input permanezca si no hay error */
+.form-style {
+    border-bottom: 2px solid #ddd;
+}

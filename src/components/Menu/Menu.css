@@ -1,34 +1,32 @@
 .navGame {
     background-color: transparent;
-    /* background-image: url(../../images/foto7.jpg); */
     height: 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 0;
+    width: 100vw
 }
 
-.navlogo {
-    color: white;
-    font-family: serif;
-    font-weight: bold;
-    font-size: 30px;
-    margin: 15px;
-    text-transform: uppercase;
-    text-shadow: 2px 3px 5px #f3f0f0;
-
+.navitems {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
 .navitems a {
-    color: white;
+    color: rgb(2, 2, 2);
     font-family: serif;
     margin: 15px;
     position: relative;
     text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }
 
 a:hover {
-    color: rgb(59, 235, 59);
+    color: rgb(125, 239, 125)
 }
 
 .navtoggle {
@@ -44,7 +42,7 @@ a:hover {
         position: absolute;
         top: 60px;
         left: 0;
-        background-color: black;
+        background-color: rgb(88, 175, 221);
         display: flex;
         flex-direction: column;
         width: 100%;
@@ -86,3 +84,29 @@ a:hover {
         transform: rotate(-45deg) translate(-5px, 0px);
     }
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+.title {
+    margin-left: 10px;
+    font-size: 20px;
+    font-weight: normal;
+    font-family: 'Pacifico', cursive;
+    color: #000;
+}
+
+.me {
+    color: rgb(88, 175, 221)
+}
+
+.logout {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin-top: 6%;
+    margin-right: 6%;
+}
+
+/* .logout:hover {
+    background-color: red;
+} */
