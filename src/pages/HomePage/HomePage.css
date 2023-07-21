@@ -5,11 +5,13 @@
     align-items: center;
     /* max-width: 100vw;
     max-height: 100vh; */
+    margin-top: 2%;
 }
 
 .main {
     display: flex;
     flex-direction: row;
+    margin-top: 3%;
 }
 
 .loginform {
