@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Menu.css";
 import Logout from '../../images/logout.png'
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
+import explore from '../../images/explore.png'
+import share from '../../images/share.png'
+import profile from '../../images/profile.png'
 
 
 
@@ -11,50 +14,25 @@ const Menu = () => {
     const [isOpen, setIsOpen] = useState(false);
     const { logout } = useContext(AuthContext);
 
+    const navigate = useNavigate();
+
+
     return (
-        // <div className="navGame">
-        //     <div className="title">Sharing <span className="me">Me</span></div>
-        //     <div className={`navitems ${isOpen && "open"}`}>
-        //         <Link to={'/Profile'}>Profile</Link>
-        //         <Link to={'/Share'}>Share</Link>
-        //         <Link to={'/Explore'}>Explore</Link>
-        //         <img src={Logout} alt="logout" className="logout" onClick={logout} />
-        //     </div>
-        //     <div className={`navtoggle ${isOpen && "open"}`} onClick={() => setIsOpen(!isOpen)} >
-        //         <span></span>
-        //         <span></span>
-        //         <span></span>
-        //     </div>
-        // </div>
-        <nav className="navbar">
-            <div id="trapezoid">
-                <Link to="#" className="sub-home">Profile</Link>
-                <Link to="#About" className="expandHome">Share</Link>
-                <div className="subnav">
-                    <button className="subnavbtn">
-                        Clients<i className="fa fa-caret-down"></i>
-                    </button>
-                    <div className="subnav-content">
-                        {/* Contenido del submenú de Clients */}
-                    </div>
-                </div>
-                <div className="subnav">
-                    <button className="subnavbtn">
-                        Services<i className="fa fa-caret-down"></i>
-                    </button>
-                    <div className="subnav-content">
-                        <div className="subnav-trapezoid">
-                            <a href="#Services">Print Design</a>
-                            <a href="#Services">Web Design</a>
-                            <a href="#Services">Mobile App Development</a>
-                        </div>
-                    </div>
-                </div>
-                <a href="https://codepen.io/pec-man" className="expandHome">Contact</a>
+        <div className="navGame">
+            <div id="title">Sharing <span className="me">Me</span></div>
+            <div className={`navitems ${isOpen && "open"}`}>
+                <button onClick={() => { navigate("/Profile") }}> <div id="imgBoton"><img src={profile} alt="profile" className="img" /> <span className="text">Profile</span></div></button>
+                <button onClick={() => { navigate("/Share") }}><div id="imgBoton"><img src={share} alt="share" className="img" /> <span className="text">Share</span></div></button>
+                <button onClick={() => { navigate("/Explore") }}><div id="imgBoton"><img src={explore} alt="explore" className="img" /> <span className="text">Explore</span></div></button>
+                <button onClick={() => { navigate("/") }}><div id="imgBoton"><img src={Logout} alt="logout" className="img" onClick={logout} /> <span className="text">LogOut</span></div></button>
             </div>
-            {/* Tu componente Menu */}
-            <Menu />
-        </nav>
+            <div className={`navtoggle ${isOpen && "open"}`} onClick={() => setIsOpen(!isOpen)} >
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
     );
 };
 

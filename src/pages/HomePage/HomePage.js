@@ -7,13 +7,13 @@ import Title from '../../components/Title/Title';
 
 const HomePage = () => {
     return (
-        <div className="body">
+        <div id="bodyHome">
             <Title />
-            <div className="main">
-                <div className="imagenContainer">
-                    <img src={fotomovil} alt="" className="imagen" />
+            <div id="mainHome">
+                <div id="imagenContainerHome">
+                    <img src={fotomovil} alt="" id="imagenHome" />
                 </div>
-                <div className='loginform'>
+                <div id='loginformHome'>
                     <Loginform />
                 </div>
             </div>

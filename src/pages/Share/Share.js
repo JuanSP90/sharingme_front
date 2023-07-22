@@ -2,19 +2,17 @@ import React from 'react'
 import Menu from '../../components/Menu/Menu'
 import { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
-import './Profile.css'
+import './Share.css'
 
-const Profile = () => {
-    const { profile } = useContext(AuthContext);
+
+const Share = () => {
     return (
-        <div id="body">
+        <div>
             <Menu />
-            <div className="principal">
-                Cosas del profile
-            </div>
+            <div>Share</div>
 
         </div>
     )
 }
 
-export default Profile
+export default Share
