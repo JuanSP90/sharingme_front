@@ -26,10 +26,12 @@ const Menu = () => {
                 <button onClick={() => { navigate("/Explore") }}><div id="imgBoton"><img src={explore} alt="explore" className="img" /> <span className="text">Explore</span></div></button>
                 <button onClick={() => { navigate("/") }}><div id="imgBoton"><img src={Logout} alt="logout" className="img" onClick={logout} /> <span className="text">LogOut</span></div></button>
             </div>
-            <div className={`navtoggle ${isOpen && "open"}`} onClick={() => setIsOpen(!isOpen)} >
-                <span></span>
-                <span></span>
-                <span></span>
+            <div className="fondoNavToggle">
+                <div className={`navtoggle ${isOpen && "open"}`} onClick={() => setIsOpen(!isOpen)} >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </div>
 

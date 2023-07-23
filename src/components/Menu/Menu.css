@@ -64,7 +64,7 @@ a:hover {
     .navtoggle {
         display: flex !important;
         flex-direction: column;
-        /* margin: 15px; */
+        margin: 15px;
 
     }
 
@@ -72,7 +72,7 @@ a:hover {
         width: 30px;
         height: 4px;
         background-color: white;
-        /* margin-bottom: 5px; */
+        margin-bottom: 5px;
         border-radius: 5px;
         transform-origin: 5px 0px;
         transition: all 0.3s linear;
@@ -160,4 +160,8 @@ button:hover {
     background-color: rgb(0, 0, 0, 0.5);
     border-radius: 15px;
     transition: background-color 1s;
+}
+
+.fondoNavToggle {
+    background-color: grey;
 }
