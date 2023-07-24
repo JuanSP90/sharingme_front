@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700,800,900');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.navGame {
+    background-color: rgb(255, 255, 255, 0.5);
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* margin-top: 0; */
+    width: 100vw;
+    padding: 5px;
+    border-bottom: 1px rgb(91, 87, 87, 0.5) solid;
+
+}
+
+.navitems {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.navitems a {
+    color: rgb(2, 2, 2);
+    font-family: serif;
+    margin: 15px;
+    position: relative;
+    text-decoration: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+a:hover {
+    color: rgb(125, 239, 125)
+}
+
+.navtoggle {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .navlogo {
+        font-size: 20px;
+    }
+
+    .navitems {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background-color: rgb(107, 110, 112);
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: auto;
+        transform: translateX(-100%);
+        transition: 0.3s ease all;
+    }
+
+    .navitems.open {
+        transform: translateX(0) !important;
+    }
+
+    .navtoggle {
+        display: flex !important;
+        flex-direction: column;
+        margin: 15px;
+
+    }
+
+    .navtoggle span {
+        width: 30px;
+        height: 4px;
+        background-color: white;
+        margin-bottom: 5px;
+        border-radius: 5px;
+        transform-origin: 5px 0px;
+        transition: all 0.3s linear;
+    }
+
+    .navtoggle.open>span {
+        transform: rotate(45deg) translate(0px, 0px);
+    }
+
+    .navtoggle.open>span:nth-child(2) {
+        display: none;
+    }
+
+    .navtoggle.open>span:nth-child(3) {
+        transform: rotate(-45deg) translate(-5px, 0px);
+    }
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+#title {
+    margin-left: 10px;
+    font-size: 30px;
+    font-weight: normal;
+    font-family: 'Pacifico', cursive;
+    color: #000;
+    margin-right: 30px
+}
+
+.me {
+    color: rgb(88, 175, 221)
+}
+
+.img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    /* margin-top: 6%;
+    margin-right: 6%; */
+    margin-right: 5%;
+}
+
+
+
+/* .logout:hover {
+    background-color: red;
+} */
+
+#imgBoton {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    /* padding-right: 2px; */
+}
+
+button {
+    background-color: transparent;
+    margin-right: 10px;
+    border: none;
+    cursor: pointer
+}
+
+button .text {
+    opacity: 0;
+    transition: opacity 0.7s;
+    font-size: larger;
+    padding: 10px;
+    font-family: 'Roboto';
+    font-weight: 300;
+}
+
+
+button:hover .text {
+    opacity: 1;
+}
+
+button:hover {
+    border: solid rgb(0, 0, 0) 1px;
+    background-color: rgb(0, 0, 0, 0.5);
+    border-radius: 15px;
+    transition: background-color 1s;
+}
+
+.fondoNavToggle {
+    background-color: grey;
+}

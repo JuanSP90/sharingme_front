@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+.title {
+    font-size: 60px;
+    font-weight: normal;
+    font-family: 'Pacifico', cursive;
+    color: #000;
+    /* Color del texto (puedes ajustarlo según tus necesidades) */
+    /* Otros estilos de texto, como alineación, espaciado, etc. */
+}
+
+.me {
+    color: rgb(88, 175, 221)
+}
