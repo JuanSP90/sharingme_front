@@ -42,8 +42,10 @@ export const AuthContextProvider = ({ children }) => {
             });
             window.localStorage.setItem('token', response.data.token)
             if (response.status === 200) {
-                getMyProfile()
-                navigate('/Profile')
+                await getMyProfile()
+                //este navigate es necesario
+                // navigate(`/user/${profile.userName}`)
+                return profile
             }
         } catch (error) {
             console.log("error al hacer login", error);
@@ -52,7 +54,7 @@ export const AuthContextProvider = ({ children }) => {
 
     const logout = async () => {
         window.localStorage.removeItem('token');
-        navigate('/')
+        // navigate('/')
     }
 
     useEffect(() => {

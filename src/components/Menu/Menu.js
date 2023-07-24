@@ -6,13 +6,13 @@ import { useContext, useEffect } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 import explore from '../../images/explore.png'
 import share from '../../images/share.png'
-import profile from '../../images/profile.png'
+import profileFoto from '../../images/profile.png'
 
 
 
 const Menu = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const { logout } = useContext(AuthContext);
+    const { logout, profile } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -21,10 +21,10 @@ const Menu = () => {
         <div className="navGame">
             <div id="title">Sharing <span className="me">Me</span></div>
             <div className={`navitems ${isOpen && "open"}`}>
-                <button onClick={() => { navigate("/Profile") }}> <div id="imgBoton"><img src={profile} alt="profile" className="img" /> <span className="text">Profile</span></div></button>
+                <button onClick={() => { navigate(`/user/${profile.userName}`) }}> <div id="imgBoton"><img src={profileFoto} alt="profile" className="img" /> <span className="text">Profile</span></div></button>
                 <button onClick={() => { navigate("/Share") }}><div id="imgBoton"><img src={share} alt="share" className="img" /> <span className="text">Share</span></div></button>
                 <button onClick={() => { navigate("/Explore") }}><div id="imgBoton"><img src={explore} alt="explore" className="img" /> <span className="text">Explore</span></div></button>
-                <button onClick={() => { navigate("/") }}><div id="imgBoton"><img src={Logout} alt="logout" className="img" onClick={logout} /> <span className="text">LogOut</span></div></button>
+                <button onClick={() => { navigate("/") }}><div id="imgBoton" onClick={logout}><img src={Logout} alt="logout" className="img" /> <span className="text" >LogOut</span></div></button>
             </div>
             <div className="fondoNavToggle">
                 <div className={`navtoggle ${isOpen && "open"}`} onClick={() => setIsOpen(!isOpen)} >

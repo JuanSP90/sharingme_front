@@ -1,24 +1,25 @@
-import React from 'react';
-import { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Loginform.css';
-
-
 
 const Loginform = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState(false);
   const [isEmailFocused, setIsEmailFocused] = useState(false);
-
-  const { login } = useContext(AuthContext);
-
-  // const URL = process.env.URL_WEBSITE
-  // TENGO Q PREGUNTAR ESTO, NO ME LO COGE BIEN
-
+  const { login, profile, setReload, reload } = useContext(AuthContext);
   const navigate = useNavigate();
+
+
+  // useEffect(() => {
+  //   if (profile.userName) {
+  //     // navigate(`/user/${profile.userName}`);
+  //     setReload(!reload);
+  //   }
+  // }, [profile.userName, navigate, setReload, reload]);
+
 
   const handleEmailChange = (event) => {
     const inputValue = event.target.value;
@@ -43,14 +44,23 @@ const Loginform = () => {
     return emailRegex.test(email);
   };
 
-  const handleSubmitLogin = () => {
+  const handleSubmitLogin = async () => {
     if (!isValidEmail(email)) {
       console.log('Email incorrecto');
       return;
     }
 
-    login(password, email);
-    navigate("/Profile");
+    try {
+
+      await login(password, email);
+      setReload(!reload)
+      navigate(`/user/${profile.userName}`)
+      //esto no me navega bien, me va al ultimo usuario y no al actual
+
+
+    } catch (error) {
+      console.log('Error al iniciar sesión:', error);
+    }
   };
 
   const handleEmailFocus = () => {
@@ -123,10 +133,10 @@ const Loginform = () => {
 
     try {
       await axios.post("http://localhost:3001/users/", newUser);
-      login(newUser.password, newUser.email);
-      navigate("/Profile");
+      await login(newUser.password, newUser.email);
+      navigate(`/user/${userName}`);
     } catch (error) {
-      console.log("error al registrarme", error);
+      console.log("Error al registrarme:", error);
     }
   };
 
