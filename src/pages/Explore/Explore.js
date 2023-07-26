@@ -23,11 +23,11 @@ const Explore = () => {
     };
 
     return (
-        <div>
+        <div className="ExplorePage">
             <Menu />
-            <div>Explore</div>
+            <button className="botonMapa">Mostrar mapa global de usuarios</button>
             {/* aqui debe de ir un boton que me enseñe el mapa del mundo y con la api de google me enseñe de donde son esta gente o donde tenemos a los usuarios, para ellohay que meter en el model user la propiedad de tags y de coiuntry */}
-            <div>
+            <div className="ExploreCardContainer">
                 {/* aqui hay que poner algo de PAGINAS */}
                 {users.map((user) => (
                     <ExploreCard userName={user.userName} backgroundColor={user.backgroundColor} />

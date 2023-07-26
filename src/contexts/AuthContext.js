@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { ToastContainer, toast } from 'react-toastify';
 
 
 export const AuthContext = createContext(null);
@@ -25,7 +25,8 @@ export const AuthContextProvider = ({ children }) => {
             });
             console.log('vengo del backend', response.data)
             setProfile(response.data);
-
+            console.log('getmy', response.data.userName)
+            return response.data.userName
 
         } catch (error) {
             return navigate('/')
@@ -34,27 +35,26 @@ export const AuthContextProvider = ({ children }) => {
     };
 
     const login = async (password, email) => {
-        try {
+        // try {
 
-            const response = await axios.post("http://localhost:3001/users/login", {
-                password: password,
-                email: email,
-            });
-            window.localStorage.setItem('token', response.data.token)
-            if (response.status === 200) {
-                await getMyProfile()
-                //este navigate es necesario
-                // navigate(`/user/${profile.userName}`)
-                return profile
-            }
-        } catch (error) {
-            console.log("error al hacer login", error);
+        const response = await axios.post("http://localhost:3001/users/login", {
+            password: password,
+            email: email,
+        });
+        window.localStorage.setItem('token', response.data.token)
+        if (response.status === 200) {
+            return await getMyProfile()
         }
-    };
+    }
+    // catch (error) {
+    //     console.log("error al hacer login", error);
+    //     console.log('pruebas de error', error.response.data)
+    //     toast.error(error.response.data, { autoClose: 5000 });
+    // }
+    // };
 
     const logout = async () => {
         window.localStorage.removeItem('token');
-        // navigate('/')
     }
 
     useEffect(() => {
@@ -62,6 +62,8 @@ export const AuthContextProvider = ({ children }) => {
     }, [reload]);
 
     return (
+
         <AuthContext.Provider value={{ profile, login, getMyProfile, setReload, reload, logout }}>{children}</AuthContext.Provider>
+
     )
 };

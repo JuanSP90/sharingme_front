@@ -14,7 +14,7 @@ const Profile = () => {
     const [profileData, setProfileData] = useState(null);
     const [backgroundColor, setBackgroundColor] = useState('#ffffff');
     const { profile: loggedInUser, reload, setReload, getMyProfile } = useContext(AuthContext);
-    const [profileLoaded, setProfileLoaded] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -24,14 +24,14 @@ const Profile = () => {
 
     const fetchUserProfile = async (userName) => {
         try {
+            setIsLoading(true);
             const response = await axios.get(`http://localhost:3001/users/${userName}`);
             setProfileData(response.data);
             setBackgroundColor(response.data.backgroundColor);
-            setProfileLoaded(true);
         } catch (error) {
             console.error('Error fetching user profile:', error);
-            setProfileLoaded(false);
-        }
+
+        } finally { setIsLoading(false); }
     };
 
     const addLink = (newLink) => {
@@ -112,14 +112,16 @@ const Profile = () => {
             </li>
         );
     };
-
+    if (isLoading) {
+        return <div>SPINNER</div>
+    }
     return (
         <div className="App" style={{ backgroundColor }}>
             <Menu />
-            {profileLoaded ? (
+            {profileData ? (
                 <div>
                     <h1>{profileData.userName}</h1>
-                    <p>Descripción: {profileData.description}</p>
+                    <p>{`Descripción: ${profileData.description}`}</p>
                     {profileData.links.map((link) => (
                         <ProfileLink key={link._id} link={link} />
                     ))}
@@ -144,7 +146,7 @@ const Profile = () => {
                                 ))}
                             </ul>
                             <Description addDescription={addDescription} loggedIn={true} />
-                            <DescriptionList description={profileData.description} deleteDescription={clearDescription} loggedIn={true} />
+                            {/* <DescriptionList description={profileData.description} deleteDescription={clearDescription} loggedIn={true} /> */}
                             <button onClick={saveChanges}>Guardar cambios</button>
                         </>
                     )}

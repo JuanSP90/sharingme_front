@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
+import './ExploreCard.css'
 
 const ExploreCard = (props) => {
     const navigate = useNavigate();
@@ -8,7 +9,7 @@ const ExploreCard = (props) => {
     }
 
     return (
-        <div style={{ backgroundColor: props.backgroundColor }}>
+        <div className="userCard" style={{ backgroundColor: props.backgroundColor }}>
             <h2>{props.userName}</h2>
             {/* en un futuro meter aqui algo de TAGS */}
             <button onClick={visit}>Visitar</button>
