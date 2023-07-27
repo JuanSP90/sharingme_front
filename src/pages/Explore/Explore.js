@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 import './Explore.css'
 import axios from 'axios';
 import ExploreCard from '../../components/ExploreCard/ExploreCard'
-
+import MapWithMarkers from '../../components/Map/Map';
+import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api';
 
 const Explore = () => {
     const [users, setUsers] = useState([]);
@@ -25,8 +26,7 @@ const Explore = () => {
     return (
         <div className="ExplorePage">
             <Menu />
-            <button className="botonMapa">Mostrar mapa global de usuarios</button>
-            {/* aqui debe de ir un boton que me enseñe el mapa del mundo y con la api de google me enseñe de donde son esta gente o donde tenemos a los usuarios, para ellohay que meter en el model user la propiedad de tags y de coiuntry */}
+            <MapWithMarkers users={users} />
             <div className="ExploreCardContainer">
                 {/* aqui hay que poner algo de PAGINAS */}
                 {users.map((user) => (

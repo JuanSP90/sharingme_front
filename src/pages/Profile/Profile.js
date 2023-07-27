@@ -8,6 +8,7 @@ import Description from '../../components/Description/Description';
 import DescriptionList from '../../components/Description/DescriptionList';
 import { useParams, useNavigate } from 'react-router-dom';
 import NotFound from '../NotFound/NotFound';
+import Popup from '../../components/Popup/Popup';
 
 const Profile = () => {
     const { userName } = useParams();
@@ -15,6 +16,7 @@ const Profile = () => {
     const [backgroundColor, setBackgroundColor] = useState('#ffffff');
     const { profile: loggedInUser, reload, setReload, getMyProfile } = useContext(AuthContext);
     const [isLoading, setIsLoading] = useState(false);
+    const [showPopup, setShowPopup] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -115,6 +117,16 @@ const Profile = () => {
     if (isLoading) {
         return <div>SPINNER</div>
     }
+
+
+
+    const handlePopupOpen = () => {
+        setShowPopup(true);
+    };
+
+    const handlePopupClose = () => {
+        setShowPopup(false);
+    };
     return (
         <div className="App" style={{ backgroundColor }}>
             <Menu />
@@ -126,8 +138,11 @@ const Profile = () => {
                         <ProfileLink key={link._id} link={link} />
                     ))}
                     {isProfileEditable && (
-                        <>
-                            <h1>Personaliza tu entorno</h1>
+
+                        <div className="configZone">
+                            <button onClick={handlePopupOpen}>Configuracion interna usuario</button>
+                            {showPopup && <Popup onClose={handlePopupClose} />}
+                            <h1>Personaliza tu entorno publico</h1>
                             <div>
                                 <label htmlFor="background-color">Color de fondo:</label>
                                 <select id="background-color" value={backgroundColor} onChange={handleBackgroundColorChange}>
@@ -146,9 +161,9 @@ const Profile = () => {
                                 ))}
                             </ul>
                             <Description addDescription={addDescription} loggedIn={true} />
-                            {/* <DescriptionList description={profileData.description} deleteDescription={clearDescription} loggedIn={true} /> */}
                             <button onClick={saveChanges}>Guardar cambios</button>
-                        </>
+                        </div>
+
                     )}
                 </div>
             ) : (
