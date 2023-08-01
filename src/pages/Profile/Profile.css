@@ -35,3 +35,14 @@ li {
     justify-content: center;
     align-items: center;
 }
+
+.socialIcon.selected {
+    border: 2px solid #ff0000;
+    /* You can change the border color to any desired style */
+    width: 20px;
+    height: 20px;
+}
+
+.botonAbrirPopUp {
+    background-color: orange;
+}

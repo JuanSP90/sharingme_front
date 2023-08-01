@@ -26,7 +26,7 @@ const Explore = () => {
     return (
         <div className="ExplorePage">
             <Menu />
-            <MapWithMarkers users={users} />
+            {/* <MapWithMarkers users={users} /> */}
             <div className="ExploreCardContainer">
                 {/* aqui hay que poner algo de PAGINAS */}
                 {users.map((user) => (

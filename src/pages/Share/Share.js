@@ -32,14 +32,12 @@ const Share = () => {
         <div className="SharePageContainer">
             <Menu />
             <div className="botonazos">
-                {/* <button className="botonCompartirPerfil" onClick={ShareButton}> */}
+
                 <img src={shareIcon} alt="share" className="imgShare" onClick={ShareButton}></img>
-                {/* Compartir mi perfil */}
-                {/* </button> */}
-                {/* <button className="botonAbrirPop" onClick={handleOpenQRPopup}> */}
+
                 <img src={qrIcon} alt="share" className="imgShare" onClick={handleOpenQRPopup}></img>
 
-                {/* Abrir QR</button> */}
+
             </div>
             {showQRPopup && (
                 <div className="qr-popup">
