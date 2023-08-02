@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-
 .ExplorePage {
     display: flex;
     justify-content: center;
@@ -32,4 +31,11 @@
 
 .botonMapa:hover {
     background-color: (125, 239, 125);
+}
+
+.paginationExplore {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px
 }
