@@ -5,16 +5,24 @@ import './Profile.css';
 import Menu from '../../components/Menu/Menu';
 import { AuthContext } from '../../contexts/AuthContext';
 import Description from '../../components/Description/Description';
-import DescriptionList from '../../components/Description/DescriptionList';
 import { useParams, useNavigate } from 'react-router-dom';
 import NotFound from '../NotFound/NotFound';
+import Popup from '../../components/Popup/Popup';
+import facebookIcon from '../../images/facebookIcon.png'
+import instagramIcon from '../../images/instagramIcon.png'
+import tiktokIcon from '../../images/tiktokIcon.png'
+import twitterIcon from '../../images/twitterIcon.png'
+
+
 
 const Profile = () => {
     const { userName } = useParams();
     const [profileData, setProfileData] = useState(null);
     const [backgroundColor, setBackgroundColor] = useState('#ffffff');
     const { profile: loggedInUser, reload, setReload, getMyProfile } = useContext(AuthContext);
-    const [profileLoaded, setProfileLoaded] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [showPopup, setShowPopup] = useState(false);
+    const [selectedIcons, setSelectedIcons] = useState({});
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -24,14 +32,14 @@ const Profile = () => {
 
     const fetchUserProfile = async (userName) => {
         try {
+            setIsLoading(true);
             const response = await axios.get(`http://localhost:3001/users/${userName}`);
             setProfileData(response.data);
             setBackgroundColor(response.data.backgroundColor);
-            setProfileLoaded(true);
         } catch (error) {
             console.error('Error fetching user profile:', error);
-            setProfileLoaded(false);
-        }
+
+        } finally { setIsLoading(false); }
     };
 
     const addLink = (newLink) => {
@@ -66,6 +74,13 @@ const Profile = () => {
         setBackgroundColor(e.target.value);
     };
 
+    const toggleIconSelection = (socialMedia) => {
+        setSelectedIcons((prevSelectedIcons) => ({
+            ...prevSelectedIcons,
+            [socialMedia]: !prevSelectedIcons[socialMedia],
+        }));
+    };
+
     const saveChanges = async () => {
         if (profileData._id) {
             try {
@@ -75,6 +90,7 @@ const Profile = () => {
                         links: profileData.links,
                         description: profileData.description,
                         backgroundColor,
+                        icon: profileData.icon
                     },
                     {
                         headers: {
@@ -93,13 +109,68 @@ const Profile = () => {
     const isProfileEditable = loggedInUser.userName === userName;
 
     const ProfileLinkEditable = ({ link }) => {
+        const getIconBySocialMedia = (socialMedia) => {
+            const isSelected = selectedIcons[socialMedia];
+            switch (socialMedia) {
+                case 'facebook':
+                    return (
+                        <img
+                            src={facebookIcon}
+                            alt="Facebook"
+                            className={`socialIcon${isSelected ? ' selected' : ''}`}
+                            onClick={() => toggleIconSelection('facebook')}
+                        />
+                    );
+                case 'instagram':
+                    return (
+                        <img
+                            src={instagramIcon}
+                            alt="Instagram"
+                            className={`socialIcon${isSelected ? ' selected' : ''}`}
+                            onClick={() => toggleIconSelection('instagram')}
+                        />
+                    );
+                case 'tiktok':
+                    return (
+                        <img
+                            src={tiktokIcon}
+                            alt="TikTok"
+                            className={`socialIcon${isSelected ? ' selected' : ''}`}
+                            onClick={() => toggleIconSelection('tiktok')}
+                        />
+                    );
+                case 'twitter':
+                    return (
+                        <img
+                            src={twitterIcon}
+                            alt="Twitter"
+                            className={`socialIcon${isSelected ? ' selected' : ''}`}
+                            onClick={() => toggleIconSelection('twitter')}
+                        />
+                    );
+                default:
+                    return null;
+            }
+        }
+
+
         return (
             <li>
-                <h3>{link.title}</h3>
-                <p>{link.url}</p>
-                {isProfileEditable && <button onClick={() => deleteLink(link._id)}>Eliminar</button>}
+                <div className="linkItem">
+                    <div className="linkIcon" onClick={() => toggleIconSelection(link.socialMedia)}>
+                        {getIconBySocialMedia(link.socialMedia)}
+                    </div>
+                    <div className="linkInfo">
+                        <h3>{link.title}</h3>
+                        <p>{link.url}</p>
+                    </div>
+                    {isProfileEditable && <button onClick={() => deleteLink(link._id)}>Eliminar</button>}
+                </div>
             </li>
         );
+
+
+
     };
 
     const ProfileLink = ({ link }) => {
@@ -112,20 +183,36 @@ const Profile = () => {
             </li>
         );
     };
+    if (isLoading) {
+        return <div>SPINNER</div>
+    }
 
+
+
+    const handlePopupOpen = () => {
+        setShowPopup(true);
+    };
+
+    const handlePopupClose = () => {
+        setShowPopup(false);
+    };
     return (
         <div className="App" style={{ backgroundColor }}>
             <Menu />
-            {profileLoaded ? (
+            {profileData ? (
                 <div>
                     <h1>{profileData.userName}</h1>
-                    <p>Descripción: {profileData.description}</p>
+                    <p>{`Descripción: ${profileData.description}`}</p>
                     {profileData.links.map((link) => (
                         <ProfileLink key={link._id} link={link} />
                     ))}
                     {isProfileEditable && (
-                        <>
-                            <h1>Personaliza tu entorno</h1>
+
+                        <div className="configZone">
+
+                            {showPopup && <Popup onClose={handlePopupClose} />}
+                            <button className="botonAbrirPopUp" onClick={handlePopupOpen}>Configuracion interna usuario</button>
+                            <h1>Personaliza tu entorno publico</h1>
                             <div>
                                 <label htmlFor="background-color">Color de fondo:</label>
                                 <select id="background-color" value={backgroundColor} onChange={handleBackgroundColorChange}>
@@ -144,9 +231,9 @@ const Profile = () => {
                                 ))}
                             </ul>
                             <Description addDescription={addDescription} loggedIn={true} />
-                            <DescriptionList description={profileData.description} deleteDescription={clearDescription} loggedIn={true} />
                             <button onClick={saveChanges}>Guardar cambios</button>
-                        </>
+                        </div>
+
                     )}
                 </div>
             ) : (

@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.ExplorePage {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-family: 'Roboto';
+    ;
+}
+
+.ExploreCardContainer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.botonMapa {
+    display: flex;
+    align-self: center;
+    margin: 20px;
+    align-items: center;
+    justify-content: center;
+    width: 30vw;
+    border: 2px;
+    padding: 10px;
+    font-family: 'Roboto';
+    font-size: larger;
+    background-color: rgb(88, 175, 221);
+    border-radius: 20px;
+}
+
+.botonMapa:hover {
+    background-color: (125, 239, 125);
+}
+
+.paginationExplore {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px
+}

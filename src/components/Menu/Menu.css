@@ -5,6 +5,7 @@
     background-color: rgb(255, 255, 255, 0.5);
     height: 50px;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     /* margin-top: 0; */
@@ -20,7 +21,7 @@
     justify-content: space-evenly;
 }
 
-.navitems a {
+/* .navitems a {
     color: rgb(2, 2, 2);
     font-family: serif;
     margin: 15px;
@@ -29,11 +30,11 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-}
+} */
 
-a:hover {
+/* a:hover {
     color: rgb(125, 239, 125)
-}
+} */
 
 .navtoggle {
     display: none;
@@ -44,15 +45,28 @@ a:hover {
         font-size: 20px;
     }
 
+    .navitems.open .text {
+        opacity: 100;
+        font-family: 'Roboto';
+    }
+
+    .navitems.open button {
+        margin: 10px;
+    }
+
     .navitems {
         position: absolute;
         top: 60px;
         left: 0;
-        background-color: rgb(107, 110, 112);
+        background-color: grey;
         display: flex;
         flex-direction: column;
+        align-items: center;
+        justify-content: start;
         width: 100%;
         height: auto;
+        padding: 10px;
+        margin: 10px;
         transform: translateX(-100%);
         transition: 0.3s ease all;
     }
@@ -89,6 +103,10 @@ a:hover {
     .navtoggle.open>span:nth-child(3) {
         transform: rotate(-45deg) translate(-5px, 0px);
     }
+
+    button {
+        background-color: #fff;
+    }
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
@@ -99,7 +117,7 @@ a:hover {
     font-weight: normal;
     font-family: 'Pacifico', cursive;
     color: #000;
-    margin-right: 30px
+    /* margin-right: 30px */
 }
 
 .me {
@@ -116,7 +134,7 @@ a:hover {
     cursor: pointer;
     /* margin-top: 6%;
     margin-right: 6%; */
-    margin-right: 5%;
+    /* margin-right: 5%; */
 }
 
 
@@ -136,7 +154,7 @@ a:hover {
 
 button {
     background-color: transparent;
-    margin-right: 10px;
+    /* margin-right: 10px; */
     border: none;
     cursor: pointer
 }
@@ -163,5 +181,12 @@ button:hover {
 }
 
 .fondoNavToggle {
-    background-color: grey;
+    background-color: rgb(88, 175, 221)
+}
+
+.divMenuP {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100vw;
 }

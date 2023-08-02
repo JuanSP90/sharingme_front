@@ -3,6 +3,9 @@ import { AuthContext } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Loginform.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import ForgotPassword from '../../pages/ForgotPassword/ForgotPassword'
 
 const Loginform = () => {
   const [email, setEmail] = useState('');
@@ -10,15 +13,8 @@ const Loginform = () => {
   const [emailError, setEmailError] = useState(false);
   const [isEmailFocused, setIsEmailFocused] = useState(false);
   const { login, profile, setReload, reload } = useContext(AuthContext);
+  const [forgotPassword, setForgotPassword] = useState(false)
   const navigate = useNavigate();
-
-
-  // useEffect(() => {
-  //   if (profile.userName) {
-  //     // navigate(`/user/${profile.userName}`);
-  //     setReload(!reload);
-  //   }
-  // }, [profile.userName, navigate, setReload, reload]);
 
 
   const handleEmailChange = (event) => {
@@ -52,14 +48,25 @@ const Loginform = () => {
 
     try {
 
-      await login(password, email);
+      const userName = await login(password, email);
       setReload(!reload)
-      navigate(`/user/${profile.userName}`)
-      //esto no me navega bien, me va al ultimo usuario y no al actual
+      navigate(`/user/${userName}`)
 
 
     } catch (error) {
       console.log('Error al iniciar sesión:', error);
+      console.log('pruebas de error', error.response.data)
+      toast.error(error.response.data.error, {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "colored",
+      })
+
     }
   };
 
@@ -137,8 +144,19 @@ const Loginform = () => {
       navigate(`/user/${userName}`);
     } catch (error) {
       console.log("Error al registrarme:", error);
+      toast.error(error.response.data.error, {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+        theme: "colored",
+      })
     }
-  };
+
+  }
 
   return (
     <div className="section">
@@ -197,8 +215,13 @@ const Loginform = () => {
                           Login
                         </button>
                         <p className="mb-0 mt-4 text-center">
-                          <a href="https://www.web-leb.com/code" className="link">Forgot your password?</a>
+                          <button
+                            onClick={() => {
+                              navigate(`/ForgotPassword`);
+                            }}
+                          >Forgot your password?</button>
                         </p>
+
                       </div>
                     </div>
                   </div>
@@ -261,7 +284,8 @@ const Loginform = () => {
           </div>
         </div>
       </div>
-    </div>
+      <ToastContainer />
+    </div >
   );
 };
 
