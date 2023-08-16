@@ -20,14 +20,15 @@ const Description = ({ addDescription, loggedIn }) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} style={{ display: 'flex', margin: '15px', justifyContent: 'center', alignItems: 'center' }}>
             <textarea
                 type="text"
                 placeholder="Descripcion"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
+                style={{ height: '100px', width: '200px' }}
             />
-            <button type="submit">Agregar descripcion</button>
+            <button className='btn' style={{ height: '30px', width: 'auto', margin: '10px', backgroundColor: 'rgb(88, 175, 221)' }} type="submit">Agregar descripcion</button>
         </form>
     );
 };

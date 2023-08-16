@@ -211,7 +211,7 @@ const Profile = () => {
                         <div className="configZone">
 
                             {showPopup && <Popup onClose={handlePopupClose} />}
-                            <button className="botonAbrirPopUp" onClick={handlePopupOpen}>Configuracion interna usuario</button>
+                            <button className="btn" style={{ backgroundColor: 'grey' }} onClick={handlePopupOpen}>Configuracion interna del usuario</button>
                             <h1>Personaliza tu entorno publico</h1>
                             <div>
                                 <label htmlFor="background-color">Color de fondo:</label>
@@ -223,7 +223,6 @@ const Profile = () => {
                                 </select>
                             </div>
 
-                            <h2>Links:</h2>
                             <LinkForm addLink={addLink} loggedIn={true} />
                             <ul>
                                 {profileData.links.map((link) => (
@@ -231,7 +230,7 @@ const Profile = () => {
                                 ))}
                             </ul>
                             <Description addDescription={addDescription} loggedIn={true} />
-                            <button onClick={saveChanges}>Guardar cambios</button>
+                            <button className='btn' onClick={saveChanges}>Guardar cambios</button>
                         </div>
 
                     )}

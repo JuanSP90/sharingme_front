@@ -5,7 +5,6 @@ import axios from 'axios';
 import './Loginform.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import ForgotPassword from '../../pages/ForgotPassword/ForgotPassword'
 
 const Loginform = () => {
   const [email, setEmail] = useState('');

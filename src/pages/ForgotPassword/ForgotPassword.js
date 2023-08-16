@@ -26,23 +26,24 @@ const ForgotPasswordPopup = () => {
         <div className="divPopPrincipal">
             <Title />
             <div className="containerForgot">
-                <h4>Porfavor indique su email y le enviaremos el procedimiento de recuperacion de contraseña</h4>
+                <h4>Por favor indique su email y le enviaremos el procedimiento de recuperacion de contraseña</h4>
                 <form onSubmit={handleSubmit}>
                     <input
+                        className='inputForgot'
                         type="email"
                         placeholder="Ingrese su email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                     />
-                    <button type="submit">Enviar</button>
+                    <button className="btn" style={{ margin: '20px' }} type="submit">Enviar</button>
                 </form>
-                <button
+                <button className="btn" style={{ backgroundColor: 'red' }}
                     onClick={() => {
                         navigate(`/`);
                     }}
                 >Exit</button>
             </div>
-        </div>
+        </div >
     );
 };
 

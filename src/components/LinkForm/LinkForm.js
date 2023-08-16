@@ -28,14 +28,17 @@ const LinkForm = ({ addLink, loggedIn }) => {
                 placeholder="Título"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
+                style={{ height: '30px', width: '50px', margin: '10px' }}
+            //aqui vamos a cambiarlo por los iconos
             />
             <input
                 type="text"
                 placeholder="URL"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
+                style={{ height: '30px', width: '200px', margin: '10px' }}
             />
-            <button type="submit">Agregar enlace</button>
+            <button className='btn' style={{ height: '30px', width: 'auto', margin: '10px', backgroundColor: 'rgb(88, 175, 221)' }} type="submit">Agregar enlace</button>
         </form>
     );
 };
