@@ -161,10 +161,11 @@ const Profile = () => {
                         {getIconBySocialMedia(link.socialMedia)}
                     </div>
                     <div className="linkInfo">
-                        <h3>{link.title}</h3>
-                        <p>{link.url}</p>
+                        <p className="linkInfo">{link.title}</p>
+                        <p className="linkInfo">{link.url}</p>
+                        {isProfileEditable && <button style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', alignSelf: 'center', backgroundColor: 'red', height: 'auto', padding: '5px' }} className='btn' onClick={() => deleteLink(link._id)}>Eliminar</button>}
                     </div>
-                    {isProfileEditable && <button onClick={() => deleteLink(link._id)}>Eliminar</button>}
+
                 </div>
             </li>
         );
@@ -177,8 +178,7 @@ const Profile = () => {
         return (
             <li>
                 <div className="linksBox">
-                    <h3>{link.title}</h3>
-                    <p>{link.url}</p>
+                    <p>{link.title} {link.url}</p>
                 </div>
             </li>
         );
@@ -200,9 +200,9 @@ const Profile = () => {
         <div className="App" style={{ backgroundColor }}>
             <Menu />
             {profileData ? (
-                <div>
+                <div className="profilezone">
                     <h1>{profileData.userName}</h1>
-                    <p>{`Descripción: ${profileData.description}`}</p>
+                    <p>{profileData.description}</p>
                     {profileData.links.map((link) => (
                         <ProfileLink key={link._id} link={link} />
                     ))}
@@ -214,7 +214,7 @@ const Profile = () => {
                             <button className="btn" style={{ backgroundColor: 'grey' }} onClick={handlePopupOpen}>Configuracion interna del usuario</button>
                             <h1>Personaliza tu entorno publico</h1>
                             <div>
-                                <label htmlFor="background-color">Color de fondo:</label>
+                                <label htmlFor="background-color">Color de fondo: </label>
                                 <select id="background-color" value={backgroundColor} onChange={handleBackgroundColorChange}>
                                     <option value="#ffffff">Blanco</option>
                                     <option value="#ff0000">Rojo</option>
@@ -222,14 +222,14 @@ const Profile = () => {
                                     <option value="#0000ff">Azul</option>
                                 </select>
                             </div>
-
+                            <Description addDescription={addDescription} loggedIn={true} />
                             <LinkForm addLink={addLink} loggedIn={true} />
                             <ul>
                                 {profileData.links.map((link) => (
                                     <ProfileLinkEditable key={link._id} link={link} />
                                 ))}
                             </ul>
-                            <Description addDescription={addDescription} loggedIn={true} />
+
                             <button className='btn' onClick={saveChanges}>Guardar cambios</button>
                         </div>
 

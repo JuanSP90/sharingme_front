@@ -11,12 +11,9 @@ const ForgotPasswordPopup = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            // const response = 
             await axios.post('http://localhost:3001/users/forgotPassword/', {
                 email: email
             });
-
-            // console.log(response.data);
         } catch (error) {
             console.error('Error al enviar la solicitud:', error);
         }
@@ -26,7 +23,7 @@ const ForgotPasswordPopup = () => {
         <div className="divPopPrincipal">
             <Title />
             <div className="containerForgot">
-                <h4>Por favor indique su email y le enviaremos el procedimiento de recuperacion de contraseña</h4>
+                <h4>Por favor indique su email y le enviaremos un correo con el procedimiento de recuperación de contraseña.</h4>
                 <form onSubmit={handleSubmit}>
                     <input
                         className='inputForgot'
