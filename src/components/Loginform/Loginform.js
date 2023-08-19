@@ -1,19 +1,17 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './Loginform.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import ForgotPassword from '../../pages/ForgotPassword/ForgotPassword'
 
 const Loginform = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState(false);
   const [isEmailFocused, setIsEmailFocused] = useState(false);
-  const { login, profile, setReload, reload } = useContext(AuthContext);
-  const [forgotPassword, setForgotPassword] = useState(false)
+  const { login, setReload, reload } = useContext(AuthContext);
   const navigate = useNavigate();
 
 
@@ -42,7 +40,6 @@ const Loginform = () => {
 
   const handleSubmitLogin = async () => {
     if (!isValidEmail(email)) {
-      console.log('Email incorrecto');
       return;
     }
 
@@ -54,8 +51,6 @@ const Loginform = () => {
 
 
     } catch (error) {
-      console.log('Error al iniciar sesión:', error);
-      console.log('pruebas de error', error.response.data)
       toast.error(error.response.data.error, {
         position: "top-center",
         autoClose: 2000,
@@ -143,7 +138,6 @@ const Loginform = () => {
       await login(newUser.password, newUser.email);
       navigate(`/user/${userName}`);
     } catch (error) {
-      console.log("Error al registrarme:", error);
       toast.error(error.response.data.error, {
         position: "top-center",
         autoClose: 2000,

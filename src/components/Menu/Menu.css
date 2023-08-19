@@ -8,11 +8,9 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    /* margin-top: 0; */
     width: 100vw;
     padding: 5px;
     border-bottom: 1px rgb(91, 87, 87, 0.5) solid;
-
 }
 
 .navitems {
@@ -20,21 +18,6 @@
     flex-direction: row;
     justify-content: space-evenly;
 }
-
-/* .navitems a {
-    color: rgb(2, 2, 2);
-    font-family: serif;
-    margin: 15px;
-    position: relative;
-    text-decoration: none;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-} */
-
-/* a:hover {
-    color: rgb(125, 239, 125)
-} */
 
 .navtoggle {
     display: none;
@@ -117,7 +100,6 @@
     font-weight: normal;
     font-family: 'Pacifico', cursive;
     color: #000;
-    /* margin-right: 30px */
 }
 
 .me {
@@ -132,16 +114,7 @@
     width: 25px;
     height: 25px;
     cursor: pointer;
-    /* margin-top: 6%;
-    margin-right: 6%; */
-    /* margin-right: 5%; */
 }
-
-
-
-/* .logout:hover {
-    background-color: red;
-} */
 
 #imgBoton {
     display: flex;
@@ -149,12 +122,10 @@
     justify-content: center;
     align-items: center;
     align-self: center;
-    /* padding-right: 2px; */
 }
 
 button {
     background-color: transparent;
-    /* margin-right: 10px; */
     border: none;
     cursor: pointer
 }

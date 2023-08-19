@@ -14,7 +14,6 @@ const Share = () => {
         const shareURL = `http://localhost:3000/user/${profile.userName}`;
         try {
             await navigator.share({ url: shareURL });
-            console.log('URL compartida con éxito.');
         } catch (error) {
             console.error('Error al compartir:', error);
         }
@@ -32,20 +31,15 @@ const Share = () => {
         <div className="SharePageContainer">
             <Menu />
             <div className="botonazos">
-
                 <img src={shareIcon} alt="share" className="imgShare" onClick={ShareButton}></img>
-
                 <img src={qrIcon} alt="share" className="imgShare" onClick={handleOpenQRPopup}></img>
-
-
             </div>
             {showQRPopup && (
                 <div className="qr-popup">
-                    <button className="close-btn" onClick={handleCloseQRPopup}>X</button>
+                    <button className="btn" onClick={handleCloseQRPopup} style={{ backgroundColor: 'red', margin: '5px' }}>X</button>
                     <div>
                         <QRCode
                             value={`http://localhost:3000/user/${profile.userName}`}
-
                         />
                     </div>
                 </div>

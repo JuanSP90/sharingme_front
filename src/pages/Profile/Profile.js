@@ -5,15 +5,11 @@ import './Profile.css';
 import Menu from '../../components/Menu/Menu';
 import { AuthContext } from '../../contexts/AuthContext';
 import Description from '../../components/Description/Description';
+import Location from '../../components/Location/Location';
 import { useParams, useNavigate } from 'react-router-dom';
 import NotFound from '../NotFound/NotFound';
 import Popup from '../../components/Popup/Popup';
-import facebookIcon from '../../images/facebookIcon.png'
-import instagramIcon from '../../images/instagramIcon.png'
-import tiktokIcon from '../../images/tiktokIcon.png'
-import twitterIcon from '../../images/twitterIcon.png'
-
-
+import { ChromePicker } from 'react-color';
 
 const Profile = () => {
     const { userName } = useParams();
@@ -22,8 +18,7 @@ const Profile = () => {
     const { profile: loggedInUser, reload, setReload, getMyProfile } = useContext(AuthContext);
     const [isLoading, setIsLoading] = useState(false);
     const [showPopup, setShowPopup] = useState(false);
-    const [selectedIcons, setSelectedIcons] = useState({});
-    const navigate = useNavigate();
+    // const [selectedIcons, setSelectedIcons] = useState({});
 
     useEffect(() => {
         fetchUserProfile(userName);
@@ -42,10 +37,15 @@ const Profile = () => {
         } finally { setIsLoading(false); }
     };
 
-    const addLink = (newLink) => {
+    const addLink = (newLink,
+        // newIcon
+    ) => {
         setProfileData((prevData) => ({
             ...prevData,
-            links: [...prevData.links, newLink],
+            links: [...prevData.links, {
+                url: newLink
+                // , icon: newIcon 
+            }],
         }));
     };
 
@@ -63,23 +63,23 @@ const Profile = () => {
         }));
     };
 
-    const clearDescription = () => {
+    const handleBackgroundColorChange = (color) => {
+        setBackgroundColor(color.hex);
+    };
+
+    const addLocation = (newLocation) => {
         setProfileData((prevData) => ({
             ...prevData,
-            description: '',
+            location: newLocation,
         }));
     };
 
-    const handleBackgroundColorChange = (e) => {
-        setBackgroundColor(e.target.value);
-    };
-
-    const toggleIconSelection = (socialMedia) => {
-        setSelectedIcons((prevSelectedIcons) => ({
-            ...prevSelectedIcons,
-            [socialMedia]: !prevSelectedIcons[socialMedia],
-        }));
-    };
+    // const toggleIconSelection = (socialMedia) => {
+    //     setSelectedIcons((prevSelectedIcons) => ({
+    //         ...prevSelectedIcons,
+    //         [socialMedia]: !prevSelectedIcons[socialMedia],
+    //     }));
+    // };
 
     const saveChanges = async () => {
         if (profileData._id) {
@@ -90,7 +90,7 @@ const Profile = () => {
                         links: profileData.links,
                         description: profileData.description,
                         backgroundColor,
-                        icon: profileData.icon
+                        location: profileData.location
                     },
                     {
                         headers: {
@@ -98,6 +98,10 @@ const Profile = () => {
                         },
                     }
                 );
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
                 setReload(!reload);
                 getMyProfile();
             } catch (error) {
@@ -108,86 +112,63 @@ const Profile = () => {
 
     const isProfileEditable = loggedInUser.userName === userName;
 
+    // const ProfileLinkEditable = ({ link }) => {
+    //     // const { url
+    //     //     // , icon 
+    //     // } = link;
+    //     const { url } = link;
+    //     return (
+
+    //         <li>
+    //             <div className="linkItem">
+    //                 {/* <div className="linkIcon">
+    //                     <img
+    //                         src={profileData.icon}
+    //                         alt={icon}
+    //                         className={`socialIcon${selectedIcons[icon] ? ' selected' : ''}`}
+    //                         onClick={() => toggleIconSelection(icon)}
+    //                     />
+    //                 </div> */}
+    //                 <div className="linkInfo">
+    //                     <p className="linkInfo">{url}</p>
+    //                     {isProfileEditable && <button style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', alignSelf: 'center', backgroundColor: 'red', height: 'auto', padding: '5px' }} className='btn' onClick={() => deleteLink(link._id)}>Delete</button>}
+    //                 </div>
+    //             </div>
+    //         </li>
+    //     );
+    // };
     const ProfileLinkEditable = ({ link }) => {
-        const getIconBySocialMedia = (socialMedia) => {
-            const isSelected = selectedIcons[socialMedia];
-            switch (socialMedia) {
-                case 'facebook':
-                    return (
-                        <img
-                            src={facebookIcon}
-                            alt="Facebook"
-                            className={`socialIcon${isSelected ? ' selected' : ''}`}
-                            onClick={() => toggleIconSelection('facebook')}
-                        />
-                    );
-                case 'instagram':
-                    return (
-                        <img
-                            src={instagramIcon}
-                            alt="Instagram"
-                            className={`socialIcon${isSelected ? ' selected' : ''}`}
-                            onClick={() => toggleIconSelection('instagram')}
-                        />
-                    );
-                case 'tiktok':
-                    return (
-                        <img
-                            src={tiktokIcon}
-                            alt="TikTok"
-                            className={`socialIcon${isSelected ? ' selected' : ''}`}
-                            onClick={() => toggleIconSelection('tiktok')}
-                        />
-                    );
-                case 'twitter':
-                    return (
-                        <img
-                            src={twitterIcon}
-                            alt="Twitter"
-                            className={`socialIcon${isSelected ? ' selected' : ''}`}
-                            onClick={() => toggleIconSelection('twitter')}
-                        />
-                    );
-                default:
-                    return null;
-            }
-        }
-
-
+        const { url } = link; // Extrae la propiedad 'url' del objeto 'link'
         return (
             <li>
                 <div className="linkItem">
-                    <div className="linkIcon" onClick={() => toggleIconSelection(link.socialMedia)}>
-                        {getIconBySocialMedia(link.socialMedia)}
-                    </div>
                     <div className="linkInfo">
-                        <h3>{link.title}</h3>
-                        <p>{link.url}</p>
+                        <p className="linkInfo">{url}</p>
+                        {isProfileEditable && (
+                            <button style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', alignSelf: 'center', backgroundColor: 'red', height: 'auto', padding: '5px' }} className='btn' onClick={() => deleteLink(link._id)}>Delete</button>
+                        )}
                     </div>
-                    {isProfileEditable && <button onClick={() => deleteLink(link._id)}>Eliminar</button>}
                 </div>
             </li>
         );
-
-
-
     };
 
     const ProfileLink = ({ link }) => {
         return (
             <li>
                 <div className="linksBox">
-                    <h3>{link.title}</h3>
-                    <p>{link.url}</p>
+                    <a href={link.url}>
+                        {link.url}
+                    </a>
                 </div>
             </li>
         );
     };
+
+
     if (isLoading) {
         return <div>SPINNER</div>
     }
-
-
 
     const handlePopupOpen = () => {
         setShowPopup(true);
@@ -200,40 +181,62 @@ const Profile = () => {
         <div className="App" style={{ backgroundColor }}>
             <Menu />
             {profileData ? (
-                <div>
+                <div className="profilezone">
                     <h1>{profileData.userName}</h1>
-                    <p>{`Descripción: ${profileData.description}`}</p>
+                    <p>{profileData.description}</p>
+                    <p>City: {profileData.location}</p>
                     {profileData.links.map((link) => (
-                        <ProfileLink key={link._id} link={link} />
+                        <ProfileLink key={link._id} link={link}
+                        />
                     ))}
                     {isProfileEditable && (
 
-                        <div className="configZone">
+                        <div className="configZone" >
 
                             {showPopup && <Popup onClose={handlePopupClose} />}
-                            <button className="botonAbrirPopUp" onClick={handlePopupOpen}>Configuracion interna usuario</button>
-                            <h1>Personaliza tu entorno publico</h1>
-                            <div>
-                                <label htmlFor="background-color">Color de fondo:</label>
-                                <select id="background-color" value={backgroundColor} onChange={handleBackgroundColorChange}>
-                                    <option value="#ffffff">Blanco</option>
-                                    <option value="#ff0000">Rojo</option>
-                                    <option value="#00ff00">Verde</option>
-                                    <option value="#0000ff">Azul</option>
-                                </select>
+                            <button className="btn" style={{ backgroundColor: 'grey' }} onClick={handlePopupOpen}>internal user configuration</button>
+                            <h1>Customize your public environment</h1>
+                            <button className='btn' style={{ marginBottom: '10px' }} onClick={saveChanges}>Save changes</button>
+                            <div style={{
+                                display: "flex",
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                width: "90%",
+                                flexDirection: 'column'
+                            }}
+                            >
+                                <div style={{
+                                    display: "flex",
+                                    justifyContent: 'space-evenly',
+                                    alignItems: 'center',
+                                    width: "90%",
+                                    flexDirection: 'row'
+                                }}>
+                                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', border: '1px solid black', width: '40%', height: '45vh' }}>
+                                        <label htmlFor="background-color" style={{ fontSize: 'larger', marginBottom: '10px', fontWeight: 'bold' }}>Select the desired background color </label>
+                                        <ChromePicker
+                                            color={backgroundColor}
+                                            onChangeComplete={handleBackgroundColorChange}
+                                            style={{ width: '100%', zIndex: 2 }}
+                                        />
+                                    </div>
+                                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', border: '1px solid black', width: '60%', height: '45vh' }}>
+                                        <Description addDescription={addDescription} loggedIn={true} />
+                                        <Location addLocation={addLocation} loggedIn={true} />
+                                    </div>
+                                </div>
+                                <div style={{ display: 'flex', margin: '15px', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', border: '1px solid black', width: '90%' }}>
+                                    <LinkForm addLink={addLink} loggedIn={true} />
+                                    <ul>
+                                        {profileData.links.map((link) => (
+                                            <ProfileLinkEditable key={link._id} link={link} />))}
+                                        {/* {profileData.links.map((link) => (
+                                            <ProfileLinkEditable key={link._id} link={link} />
+                                        ))} */}
+                                    </ul>
+                                </div>
                             </div>
-
-                            <h2>Links:</h2>
-                            <LinkForm addLink={addLink} loggedIn={true} />
-                            <ul>
-                                {profileData.links.map((link) => (
-                                    <ProfileLinkEditable key={link._id} link={link} />
-                                ))}
-                            </ul>
-                            <Description addDescription={addDescription} loggedIn={true} />
-                            <button onClick={saveChanges}>Guardar cambios</button>
                         </div>
-
                     )}
                 </div>
             ) : (
