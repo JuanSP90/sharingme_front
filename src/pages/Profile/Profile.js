@@ -153,12 +153,16 @@ const Profile = () => {
     };
 
     const ProfileLink = ({ link }) => {
+        const openLinkInNewTab = () => {
+            window.open(link.url, '_blank');
+        };
+
         return (
             <li>
                 <div className="linksBox">
-                    <a href={link.url}>
+                    <button onClick={openLinkInNewTab}>
                         {link.url}
-                    </a>
+                    </button>
                 </div>
             </li>
         );

@@ -17,8 +17,10 @@ function Map() {
                 const response = await axios.get('http://localhost:3001/users/usersMap')
                 const { locations } = response.data;
                 const geocodedLocations = await Promise.all(locations.map(geocodeLocation));
+                console.log('soy geocode', geocodedLocations)
+                setUserLocations(geocodedLocations);
                 setUserLocations(geocodedLocations.filter(location => location));
-                console.log('soy las localizaciones', userLocations)
+                // console.log('soy las localizaciones', userLocations)
             } catch (error) {
                 console.error("Error al obtener las ubicaciones de los usuarios:", error);
             }
@@ -28,20 +30,23 @@ function Map() {
     }, []);
 
     async function geocodeLocation(locationName) {
-        try {
-            const response = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${locationName}.json?access_token=${MAPTOKEN}`);
-            const features = response.data.features;
+        if (locationName != null) {
+            try {
+                console.log('soy locationname', locationName)
+                const response = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${locationName}.json?access_token=${MAPTOKEN}`);
+                const features = response.data.features;
 
-            if (features.length > 0) {
-                const coordinates = features[0].center;
-                return { longitude: coordinates[0], latitude: coordinates[1] };
-            } else {
-                console.log(`No se encontraron resultados para la ubicación: ${locationName}`);
+                if (features.length > 0) {
+                    const coordinates = features[0].center;
+                    return { longitude: coordinates[0], latitude: coordinates[1] };
+                } else {
+                    console.log(`No se encontraron resultados para la ubicación: ${locationName}`);
+                    return null;
+                }
+            } catch (error) {
+                console.error(`Error al geocodificar la ubicación ${locationName}:`, error);
                 return null;
             }
-        } catch (error) {
-            console.error(`Error al geocodificar la ubicación ${locationName}:`, error);
-            return null;
         }
     }
 

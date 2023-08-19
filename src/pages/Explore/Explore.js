@@ -9,7 +9,7 @@ import { Helmet } from 'react-helmet';
 const Explore = () => {
     const [users, setUsers] = useState([]);
     const [itemOffset, setItemOffset] = useState(0);
-    const itemsPerPage = 10;
+    const itemsPerPage = 9;
 
     useEffect(() => {
         getAllUsers();
