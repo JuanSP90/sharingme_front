@@ -138,12 +138,11 @@ const Profile = () => {
     //     );
     // };
     const ProfileLinkEditable = ({ link }) => {
-        const { url } = link; // Extrae la propiedad 'url' del objeto 'link'
         return (
             <li>
                 <div className="linkItem">
                     <div className="linkInfo">
-                        <p className="linkInfo">{url}</p>
+                        <p className="linkInfo">{link.url}</p>
                         {isProfileEditable && (
                             <button style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', alignSelf: 'center', backgroundColor: 'red', height: 'auto', padding: '5px' }} className='btn' onClick={() => deleteLink(link._id)}>Delete</button>
                         )}

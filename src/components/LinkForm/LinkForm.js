@@ -16,15 +16,18 @@ const LinkForm = ({ addLink, loggedIn }) => {
     // ];
 
     const handleSubmit = (e) => {
-
+        console.log('antes del handlesubmit', url)
         e.preventDefault();
         if (url.trim() !== '') {
-            const linkData = {
-                url: url.trim(),
-                // icon: selectedIcon
-            };
-            addLink(linkData);
+            // const linkData = {
+            //     url: url.trim(),
+            //     // icon: selectedIcon
+            // };
+            // addLink(linkData);
+            addLink(url)
+            console.log('mitad del handlesubmit', url)
             setUrl('');
+            console.log('despues del handlesubmit', url)
             // setSelectedIcon('facebook');
         }
     };
