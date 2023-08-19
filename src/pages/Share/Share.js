@@ -32,12 +32,8 @@ const Share = () => {
         <div className="SharePageContainer">
             <Menu />
             <div className="botonazos">
-
                 <img src={shareIcon} alt="share" className="imgShare" onClick={ShareButton}></img>
-
                 <img src={qrIcon} alt="share" className="imgShare" onClick={handleOpenQRPopup}></img>
-
-
             </div>
             {showQRPopup && (
                 <div className="qr-popup">
@@ -45,7 +41,6 @@ const Share = () => {
                     <div>
                         <QRCode
                             value={`http://localhost:3000/user/${profile.userName}`}
-
                         />
                     </div>
                 </div>

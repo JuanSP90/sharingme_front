@@ -11,8 +11,9 @@ const ExploreCard = (props) => {
     return (
         <div className="userCard" style={{ backgroundColor: props.backgroundColor }}>
             <h2>{props.userName}</h2>
-            {/* en un futuro meter aqui algo de TAGS */}
-            <button onClick={visit}>Visitar</button>
+            <p>{props.description}</p>
+            <p>{props.location}</p>
+            <button className='btn' style={{ fontSize: 'smaller' }} onClick={visit}>Visitar</button>
         </div>
     )
 }

@@ -3,14 +3,11 @@ import Menu from '../../components/Menu/Menu';
 import './Explore.css';
 import axios from 'axios';
 import ExploreCard from '../../components/ExploreCard/ExploreCard';
-import MapWithMarkers from '../../components/Map/Map';
-import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api';
 import ReactPaginate from 'react-paginate';
 import { Helmet } from 'react-helmet';
 
 const Explore = () => {
     const [users, setUsers] = useState([]);
-    const [pageCount, setPageCount] = useState(0);
     const [itemOffset, setItemOffset] = useState(0);
     const itemsPerPage = 10;
 
@@ -36,7 +33,6 @@ const Explore = () => {
     return (
         <div className="ExplorePage">
             <Helmet>
-                {/* Agrega el enlace al archivo de estilos de Bootstrap aquí */}
                 <link
                     rel="stylesheet"
                     href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
@@ -45,7 +41,7 @@ const Explore = () => {
             <Menu />
             <div className="ExploreCardContainer">
                 {users.slice(itemOffset, itemOffset + itemsPerPage).map((user) => (
-                    <ExploreCard key={user.id} userName={user.userName} backgroundColor={user.backgroundColor} />
+                    <ExploreCard key={user.id} userName={user.userName} backgroundColor={user.backgroundColor} description={user.description} location={user.location} />
                 ))}
             </div>
             <ReactPaginate

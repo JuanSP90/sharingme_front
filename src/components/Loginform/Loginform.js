@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -11,8 +11,7 @@ const Loginform = () => {
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState(false);
   const [isEmailFocused, setIsEmailFocused] = useState(false);
-  const { login, profile, setReload, reload } = useContext(AuthContext);
-  const [forgotPassword, setForgotPassword] = useState(false)
+  const { login, setReload, reload } = useContext(AuthContext);
   const navigate = useNavigate();
 
 

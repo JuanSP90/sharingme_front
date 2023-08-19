@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Menu.css";
 import Logout from '../../images/logout.png'
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthContext';
 import explore from '../../images/explore.png'
 import share from '../../images/share.png'
@@ -15,7 +15,6 @@ const Menu = () => {
     const { logout, profile } = useContext(AuthContext);
 
     const navigate = useNavigate();
-
 
     return (
         <div className="navGame">
