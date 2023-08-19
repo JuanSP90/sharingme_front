@@ -22,12 +22,12 @@ const Description = ({ addDescription, loggedIn }) => {
         <form onSubmit={handleSubmit} style={{ display: 'flex', margin: '15px', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', border: '1px solid black', width: '90%' }}>
             <textarea
                 type="text"
-                placeholder="Escriba la descripción para mostrar en su perfil"
+                placeholder="Write the description to show on your profile"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
                 style={{ height: '100px', width: '90%', margin: '3px' }}
             />
-            <button className='btn' style={{ height: '30px', width: 'auto', margin: '10px', backgroundColor: 'rgb(88, 175, 221)' }} type="submit">Add Description</button>
+            <button className='btn' style={{ height: '30px', width: 'auto', margin: '10px', backgroundColor: 'rgb(88, 175, 221)' }} type="submit">Update Description</button>
         </form>
     );
 };

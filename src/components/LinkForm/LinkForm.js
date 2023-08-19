@@ -6,14 +6,14 @@ import twitterIcon from '../../images/twitterIcon.png';
 
 const LinkForm = ({ addLink, loggedIn }) => {
     const [url, setUrl] = useState('');
-    const [selectedIcon, setSelectedIcon] = useState('facebook');
+    // const [selectedIcon, setSelectedIcon] = useState('facebook');
 
-    const icons = [
-        { name: 'facebook', src: facebookIcon },
-        { name: 'instagram', src: instagramIcon },
-        { name: 'tiktok', src: tiktokIcon },
-        { name: 'twitter', src: twitterIcon },
-    ];
+    // const icons = [
+    //     { name: 'facebook', src: facebookIcon },
+    //     { name: 'instagram', src: instagramIcon },
+    //     { name: 'tiktok', src: tiktokIcon },
+    //     { name: 'twitter', src: twitterIcon },
+    // ];
 
     const handleSubmit = (e) => {
 
@@ -21,11 +21,11 @@ const LinkForm = ({ addLink, loggedIn }) => {
         if (url.trim() !== '') {
             const linkData = {
                 url: url.trim(),
-                icon: selectedIcon
+                // icon: selectedIcon
             };
             addLink(linkData);
             setUrl('');
-            setSelectedIcon('facebook');
+            // setSelectedIcon('facebook');
         }
     };
 
@@ -35,7 +35,7 @@ const LinkForm = ({ addLink, loggedIn }) => {
 
     return (
         <form onSubmit={handleSubmit} style={{ display: 'flex', margin: '15px', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', border: '1px solid black', width: 'auto' }}>
-            <div className="icon-selector">
+            {/* <div className="icon-selector">
                 {icons.map(icon => (
                     <img
                         key={icon.name}
@@ -46,7 +46,7 @@ const LinkForm = ({ addLink, loggedIn }) => {
                         style={{ width: '30px', margin: '5px' }}
                     />
                 ))}
-            </div>
+            </div> */}
             <input
                 type="text"
                 placeholder="URL"

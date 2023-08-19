@@ -40,7 +40,6 @@ const Loginform = () => {
 
   const handleSubmitLogin = async () => {
     if (!isValidEmail(email)) {
-      console.log('Email incorrecto');
       return;
     }
 
@@ -52,8 +51,6 @@ const Loginform = () => {
 
 
     } catch (error) {
-      console.log('Error al iniciar sesión:', error);
-      console.log('pruebas de error', error.response.data)
       toast.error(error.response.data.error, {
         position: "top-center",
         autoClose: 2000,
@@ -141,7 +138,6 @@ const Loginform = () => {
       await login(newUser.password, newUser.email);
       navigate(`/user/${userName}`);
     } catch (error) {
-      console.log("Error al registrarme:", error);
       toast.error(error.response.data.error, {
         position: "top-center",
         autoClose: 2000,

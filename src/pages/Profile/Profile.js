@@ -9,10 +9,6 @@ import Location from '../../components/Location/Location';
 import { useParams, useNavigate } from 'react-router-dom';
 import NotFound from '../NotFound/NotFound';
 import Popup from '../../components/Popup/Popup';
-import facebookIcon from '../../images/facebookIcon.png'
-import instagramIcon from '../../images/instagramIcon.png'
-import tiktokIcon from '../../images/tiktokIcon.png'
-import twitterIcon from '../../images/twitterIcon.png'
 import { ChromePicker } from 'react-color';
 
 const Profile = () => {
@@ -22,10 +18,7 @@ const Profile = () => {
     const { profile: loggedInUser, reload, setReload, getMyProfile } = useContext(AuthContext);
     const [isLoading, setIsLoading] = useState(false);
     const [showPopup, setShowPopup] = useState(false);
-    const [selectedIcons, setSelectedIcons] = useState({});
-    const [userLocation, setUserLocation] = useState('')
-    // const [selectedIcon, setSelectedIcon] = useState('facebook');
-    const navigate = useNavigate();
+    // const [selectedIcons, setSelectedIcons] = useState({});
 
     useEffect(() => {
         fetchUserProfile(userName);
@@ -44,22 +37,17 @@ const Profile = () => {
         } finally { setIsLoading(false); }
     };
 
-    // const addLink = (newLink, newIcon) => {
-    //     setProfileData((prevData) => ({
-    //         ...prevData,
-    //         links: [...prevData.links, { url: newLink, icon: newIcon }],
-    //     }));
-
-    // };
-    const addLink = (newLink, newIcon) => {
+    const addLink = (newLink,
+        // newIcon
+    ) => {
         setProfileData((prevData) => ({
             ...prevData,
-            links: [...prevData.links, { url: newLink, icon: newIcon }],
+            links: [...prevData.links, {
+                url: newLink
+                // , icon: newIcon 
+            }],
         }));
     };
-
-
-
 
     const deleteLink = (linkId) => {
         setProfileData((prevData) => ({
@@ -79,10 +67,6 @@ const Profile = () => {
         setBackgroundColor(color.hex);
     };
 
-    // const handleUserLocationChange = (location) => {
-    //     setUserLocation(location);
-    // };
-
     const addLocation = (newLocation) => {
         setProfileData((prevData) => ({
             ...prevData,
@@ -90,12 +74,12 @@ const Profile = () => {
         }));
     };
 
-    const toggleIconSelection = (socialMedia) => {
-        setSelectedIcons((prevSelectedIcons) => ({
-            ...prevSelectedIcons,
-            [socialMedia]: !prevSelectedIcons[socialMedia],
-        }));
-    };
+    // const toggleIconSelection = (socialMedia) => {
+    //     setSelectedIcons((prevSelectedIcons) => ({
+    //         ...prevSelectedIcons,
+    //         [socialMedia]: !prevSelectedIcons[socialMedia],
+    //     }));
+    // };
 
     const saveChanges = async () => {
         if (profileData._id) {
@@ -120,7 +104,6 @@ const Profile = () => {
                 });
                 setReload(!reload);
                 getMyProfile();
-                console.log('estoy salvando bien los datos')
             } catch (error) {
                 console.error('Error saving changes:', error);
             }
@@ -130,178 +113,39 @@ const Profile = () => {
     const isProfileEditable = loggedInUser.userName === userName;
 
     const ProfileLinkEditable = ({ link }) => {
-        const { url, icon } = link;
-        // const getIconBySocialMedia = (socialMedia) => {
-        //     const isSelected = selectedIcons[socialMedia];
-        //     switch (socialMedia) {
-        //         case 'facebook':
-        //             return (
-        //                 <img
-        //                     src={facebookIcon}
-        //                     alt="Facebook"
-        //                     className={`socialIcon${isSelected ? ' selected' : ''}`}
-        //                     onClick={() => toggleIconSelection('facebook')}
-        //                 />
-        //             );
-        //         case 'instagram':
-        //             return (
-        //                 <img
-        //                     src={instagramIcon}
-        //                     alt="Instagram"
-        //                     className={`socialIcon${isSelected ? ' selected' : ''}`}
-        //                     onClick={() => toggleIconSelection('instagram')}
-        //                 />
-        //             );
-        //         case 'tiktok':
-        //             return (
-        //                 <img
-        //                     src={tiktokIcon}
-        //                     alt="TikTok"
-        //                     className={`socialIcon${isSelected ? ' selected' : ''}`}
-        //                     onClick={() => toggleIconSelection('tiktok')}
-        //                 />
-        //             );
-        //         case 'twitter':
-        //             return (
-        //                 <img
-        //                     src={twitterIcon}
-        //                     alt="Twitter"
-        //                     className={`socialIcon${isSelected ? ' selected' : ''}`}
-        //                     onClick={() => toggleIconSelection('twitter')}
-        //                 />
-        //             );
-        //         default:
-        //             return null;
-        //     }
-        // }
-
-
+        // const { url
+        //     // , icon 
+        // } = link;
+        const { url } = link;
         return (
-            // <li>
-            //     <div className="linkItem">
-            //         <div className="linkIcon" onClick={() => toggleIconSelection(link.socialMedia)}>
-            //             {getIconBySocialMedia(link.socialMedia)}
-            //         </div>
-            //         <div className="linkInfo">
-            //             <p className="linkInfo">{link.url}</p>
-            //             {isProfileEditable && <button style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', alignSelf: 'center', backgroundColor: 'red', height: 'auto', padding: '5px' }} className='btn' onClick={() => deleteLink(link._id)}>Eliminar</button>}
-            //         </div>
-            //     </div>
-            // </li>
-            // <li>
-            //     <div className="linkItem">
-            //         <div className="linkIcon">
-            //             <img
-            //                 src={getIconBySocialMedia(link.icon)}
-            //                 alt={link.icon}
-            //                 className={`socialIcon${selectedIcons[link.icon] ? ' selected' : ''}`}
-            //                 onClick={() => toggleIconSelection(link.icon)}
-            //             />
-            //         </div>
-            //         <div className="linkInfo">
-            //             <p className="linkInfo">{link.url}</p>
-            //             {isProfileEditable && <button style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', alignSelf: 'center', backgroundColor: 'red', height: 'auto', padding: '5px' }} className='btn' onClick={() => deleteLink(link._id)}>Eliminar</button>}
-            //         </div>
-            //     </div>
-            // </li>
-            //     <li>
-            //     <div className="linkItem">
-            //         <div className="linkIcon">
-            //             <img
-            //                 src={getIconBySocialMedia(icon)}
-            //                 alt={icon}
-            //                 className={`socialIcon${selectedIcons[icon] ? ' selected' : ''}`}
-            //                 onClick={() => toggleIconSelection(icon)}
-            //             />
-            //         </div>
-            //         <div className="linkInfo">
-            //             <p className="linkInfo">{url}</p>
-            //             {isProfileEditable && <button style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', alignSelf: 'center', backgroundColor: 'red', height: 'auto', padding: '5px' }} className='btn' onClick={() => deleteLink(link._id)}>Eliminar</button>}
-            //         </div>
-            //     </div>
-            // </li>
-            // <li>
-            //     <div className="linkItem">
-            //         <div className="linkIcon">
-            //             <img
-            //                 src={getIconBySocialMedia(icon)}
-            //                 alt={icon}
-            //                 className={`socialIcon${selectedIcons[icon] ? ' selected' : ''}`}
-            //                 onClick={() => toggleIconSelection(icon)}
-            //             />
-            //         </div>
-            //         <div className="linkInfo">
-            //             <p className="linkInfo">{url}</p>
-            //             {isProfileEditable && <button style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', alignSelf: 'center', backgroundColor: 'red', height: 'auto', padding: '5px' }} className='btn' onClick={() => deleteLink(link._id)}>Eliminar</button>}
-            //         </div>
-            //     </div>
-            // </li>
 
             <li>
                 <div className="linkItem">
-                    <div className="linkIcon">
+                    {/* <div className="linkIcon">
                         <img
-                            // src={getIconBySocialMedia(icon)}
                             src={profileData.icon}
                             alt={icon}
                             className={`socialIcon${selectedIcons[icon] ? ' selected' : ''}`}
                             onClick={() => toggleIconSelection(icon)}
                         />
-                    </div>
+                    </div> */}
                     <div className="linkInfo">
                         <p className="linkInfo">{url}</p>
-                        {isProfileEditable && <button style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', alignSelf: 'center', backgroundColor: 'red', height: 'auto', padding: '5px' }} className='btn' onClick={() => deleteLink(link._id)}>Eliminar</button>}
+                        {isProfileEditable && <button style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', alignSelf: 'center', backgroundColor: 'red', height: 'auto', padding: '5px' }} className='btn' onClick={() => deleteLink(link._id)}>Delete</button>}
                     </div>
                 </div>
             </li>
 
 
         );
-
-
-
     };
 
-    // const ProfileLink = ({ link }) => {
-    //     return (
-    //         <li>
-    //             <div className="linksBox">
-    //                 {/* //aqui debe ir el icono */}
-    //                 <a href={link.url}>{link.url}</a>
-    //             </div>
-    //         </li>
-    //     );
-    // };
-    // const ProfileLinkEditable = ({ link, getIconBySocialMedia }) => {
-    //     const selectedIcon = selectedIcons[link.socialMedia];
-
-    //     return (
-    //         <li>
-    //             <div className="linkItem">
-    //                 <div className="linkIcon" onClick={() => toggleIconSelection(link.socialMedia)}>
-    //                     {getIconBySocialMedia(link.socialMedia)}
-    //                 </div>
-    //                 <div className="linkInfo">
-    //                     <a href={link.url}>
-    //                         {link.url}
-    //                         {getIconBySocialMedia(link.socialMedia)}
-    //                     </a>
-    //                     {isProfileEditable && <button style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', alignSelf: 'center', backgroundColor: 'red', height: 'auto', padding: '5px' }} className='btn' onClick={() => deleteLink(link._id)}>Eliminar</button>}
-    //                 </div>
-    //             </div>
-    //         </li>
-    //     );
-    // };
-
-    const ProfileLink = ({ link, getIconBySocialMedia }) => {
-        const selectedIcon = selectedIcons[link.socialMedia];
-
+    const ProfileLink = ({ link }) => {
         return (
             <li>
                 <div className="linksBox">
                     <a href={link.url}>
                         {link.url}
-                        {/* {getIconBySocialMedia(link.socialMedia)} */}
                     </a>
                 </div>
             </li>
@@ -312,8 +156,6 @@ const Profile = () => {
     if (isLoading) {
         return <div>SPINNER</div>
     }
-
-
 
     const handlePopupOpen = () => {
         setShowPopup(true);
@@ -330,12 +172,8 @@ const Profile = () => {
                     <h1>{profileData.userName}</h1>
                     <p>{profileData.description}</p>
                     <p>City: {profileData.location}</p>
-                    {/* {profileData.links.map((link) => (
-                        <ProfileLink key={link._id} link={link} />
-                    ))} */}
                     {profileData.links.map((link) => (
                         <ProfileLink key={link._id} link={link}
-                        // getIconBySocialMedia={getIconBySocialMedia} 
                         />
                     ))}
                     {isProfileEditable && (
@@ -376,25 +214,10 @@ const Profile = () => {
                                 </div>
                                 <div style={{ display: 'flex', margin: '15px', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', border: '1px solid black', width: '90%' }}>
                                     <LinkForm addLink={addLink} loggedIn={true} />
-                                    {/* <LinkForm addLink={addLink} loggedIn={true} selectedIcon={selectedIcon} setSelectedIcon={setSelectedIcon} /> */}
-
                                     <ul>
-                                        {/* {profileData.links.map((link) => (
-                                    <ProfileLinkEditable key={link._id} link={link} />
-                                ))} */}
-                                        {/* {profileData.links.map((link) => (
-                                    <ProfileLinkEditable key={link._id} link={link}
-
-                                    // getIconBySocialMedia={getIconBySocialMedia} 
-                                    />
-                                ))} */}
-                                        {/* {profileData.links.map((link) => (
-                                    <ProfileLinkEditable key={link._id} url={link.url} icon={link.icon} />
-                                ))} */}
                                         {profileData.links.map((link) => (
                                             <ProfileLinkEditable key={link._id} link={link} />
                                         ))}
-
                                     </ul>
                                 </div>
                             </div>

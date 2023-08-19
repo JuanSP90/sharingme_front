@@ -28,7 +28,7 @@ const Location = ({ addLocation, loggedIn }) => {
                 onChange={(e) => setLocation(e.target.value)}
                 style={{ height: 'auto', width: 'auto', margin: '3px' }}
             />
-            <button className='btn' style={{ height: '30px', width: 'auto', margin: '10px', backgroundColor: 'rgb(88, 175, 221)' }} type="submit">Add City</button>
+            <button className='btn' style={{ height: '30px', width: 'auto', margin: '10px', backgroundColor: 'rgb(88, 175, 221)' }} type="submit">Update City</button>
         </form>
     );
 };

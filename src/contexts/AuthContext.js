@@ -8,7 +8,6 @@ export const AuthContext = createContext(null);
 export const AuthContextProvider = ({ children }) => {
     const [profile, setProfile] = useState({});
     const navigate = useNavigate();
-    console.log('soy profile', profile)
     const [reload, setReload] = useState(false);
 
     const getMyProfile = async () => {
@@ -21,9 +20,7 @@ export const AuthContextProvider = ({ children }) => {
                     'Authorization': `Bearer ${window.localStorage.getItem('token')}`
                 }
             });
-            console.log('vengo del backend', response.data)
             setProfile(response.data);
-            console.log('getmy', response.data.userName)
             return response.data.userName
 
         } catch (error) {

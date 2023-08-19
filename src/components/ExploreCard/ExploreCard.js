@@ -12,8 +12,8 @@ const ExploreCard = (props) => {
         <div className="userCard" style={{ backgroundColor: props.backgroundColor }}>
             <h2>{props.userName}</h2>
             <p>{props.description}</p>
-            <p>{props.location}</p>
-            <button className='btn' style={{ fontSize: 'smaller' }} onClick={visit}>Visitar</button>
+            <p>From: {props.location}</p>
+            <button className='btn' style={{ fontSize: 'smaller' }} onClick={visit}>Visit</button>
         </div>
     )
 }
