@@ -112,31 +112,44 @@ const Profile = () => {
 
     const isProfileEditable = loggedInUser.userName === userName;
 
-    const ProfileLinkEditable = ({ link }) => {
-        // const { url
-        //     // , icon 
-        // } = link;
-        const { url } = link;
-        return (
+    // const ProfileLinkEditable = ({ link }) => {
+    //     // const { url
+    //     //     // , icon 
+    //     // } = link;
+    //     const { url } = link;
+    //     return (
 
+    //         <li>
+    //             <div className="linkItem">
+    //                 {/* <div className="linkIcon">
+    //                     <img
+    //                         src={profileData.icon}
+    //                         alt={icon}
+    //                         className={`socialIcon${selectedIcons[icon] ? ' selected' : ''}`}
+    //                         onClick={() => toggleIconSelection(icon)}
+    //                     />
+    //                 </div> */}
+    //                 <div className="linkInfo">
+    //                     <p className="linkInfo">{url}</p>
+    //                     {isProfileEditable && <button style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', alignSelf: 'center', backgroundColor: 'red', height: 'auto', padding: '5px' }} className='btn' onClick={() => deleteLink(link._id)}>Delete</button>}
+    //                 </div>
+    //             </div>
+    //         </li>
+    //     );
+    // };
+    const ProfileLinkEditable = ({ link }) => {
+        const { url } = link; // Extrae la propiedad 'url' del objeto 'link'
+        return (
             <li>
                 <div className="linkItem">
-                    {/* <div className="linkIcon">
-                        <img
-                            src={profileData.icon}
-                            alt={icon}
-                            className={`socialIcon${selectedIcons[icon] ? ' selected' : ''}`}
-                            onClick={() => toggleIconSelection(icon)}
-                        />
-                    </div> */}
                     <div className="linkInfo">
                         <p className="linkInfo">{url}</p>
-                        {isProfileEditable && <button style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', alignSelf: 'center', backgroundColor: 'red', height: 'auto', padding: '5px' }} className='btn' onClick={() => deleteLink(link._id)}>Delete</button>}
+                        {isProfileEditable && (
+                            <button style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', alignSelf: 'center', backgroundColor: 'red', height: 'auto', padding: '5px' }} className='btn' onClick={() => deleteLink(link._id)}>Delete</button>
+                        )}
                     </div>
                 </div>
             </li>
-
-
         );
     };
 
@@ -216,8 +229,10 @@ const Profile = () => {
                                     <LinkForm addLink={addLink} loggedIn={true} />
                                     <ul>
                                         {profileData.links.map((link) => (
+                                            <ProfileLinkEditable key={link._id} link={link} />))}
+                                        {/* {profileData.links.map((link) => (
                                             <ProfileLinkEditable key={link._id} link={link} />
-                                        ))}
+                                        ))} */}
                                     </ul>
                                 </div>
                             </div>
