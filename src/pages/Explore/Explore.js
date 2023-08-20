@@ -40,7 +40,7 @@ const Explore = () => {
             <Menu />
             <div className="ExploreCardContainer">
                 {users.slice(itemOffset, itemOffset + itemsPerPage).map((user) => (
-                    <ExploreCard key={user.id} userName={user.userName} backgroundColor={user.backgroundColor} description={user.description} location={user.location} />
+                    <ExploreCard key={user.id} userName={user.userName} backgroundColor={user.backgroundColor} description={user.description} location={user.location} tag1={user.tag1} tag2={user.tag2} tag3={user.tag3} />
                 ))}
             </div>
             <ReactPaginate

@@ -18,7 +18,7 @@ const ExploreCard = (props) => {
                             {props.userName}
                         </div>
                         <div class="ag-courses-item_date-box">
-                            {props.description}
+                            <h5>{props.tag1} | {props.tag2} | {props.tag3}</h5>
                         </div>
                         <div class="ag-courses-item_date">
                             From: {props.location}
