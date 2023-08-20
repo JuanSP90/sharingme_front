@@ -19,6 +19,8 @@ const Profile = () => {
 	const { profile: loggedInUser, reload, setReload, getMyProfile } = useContext(AuthContext);
 	const [isLoading, setIsLoading] = useState(false);
 	const [showPopup, setShowPopup] = useState(false);
+	const URLBACKEND = process.env.REACT_APP_URL_BACKEND;
+
 
 	useEffect(() => {
 		fetchUserProfile(userName);
@@ -28,7 +30,7 @@ const Profile = () => {
 	const fetchUserProfile = async (userName) => {
 		try {
 			setIsLoading(true);
-			const response = await axios.get(`http://localhost:3001/users/${userName}`);
+			const response = await axios.get(`${URLBACKEND}/users/${userName}`);
 			setProfileData(response.data);
 			setBackgroundColor(response.data.backgroundColor);
 		} catch (error) {
@@ -94,7 +96,7 @@ const Profile = () => {
 		if (profileData._id) {
 			try {
 				await axios.patch(
-					`http://localhost:3001/users/updateUser/`,
+					`${URLBACKEND}/users/updateUser/`,
 					{
 						links: profileData.links,
 						description: profileData.description,

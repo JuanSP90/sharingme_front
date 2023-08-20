@@ -8,15 +8,18 @@ import Title from '../../components/Title/Title';
 import Map from '../../components/Map/Map';
 import axios from 'axios';
 
+
 const HomePage = () => {
 
     const [userCount, setUserCount] = useState(0);
     const [uniqueLocationCount, setUniqueLocationCount] = useState(0);
+    const URLBACKEND = process.env.REACT_APP_URL_BACKEND;
 
     useEffect(() => {
         const getUserCount = async () => {
             try {
-                const response = await axios.get('http://localhost:3001/users/usersMap');
+                const response = await axios.get(`${URLBACKEND}/users/usersMap`);
+                console.log('soy response', response)
                 const { userCount, uniqueLocationCount } = response.data;
                 setUserCount(userCount);
                 setUniqueLocationCount(uniqueLocationCount);

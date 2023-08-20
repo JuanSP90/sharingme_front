@@ -11,13 +11,15 @@ const Explore = () => {
     const [itemOffset, setItemOffset] = useState(0);
     const itemsPerPage = 9;
 
+    const URLBACKEND = process.env.REACT_APP_URL_BACKEND;
+
     useEffect(() => {
         getAllUsers();
     }, []);
 
     const getAllUsers = async () => {
         try {
-            const response = await axios.get(`http://localhost:3001/users/`);
+            const response = await axios.get(`${URLBACKEND}/users/`);
             setUsers(response.data);
         } catch (error) {
             console.error('Error al obtener los usuarios', error);

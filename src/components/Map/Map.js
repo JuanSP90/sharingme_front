@@ -4,6 +4,7 @@ import Map, { Marker } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 const MAPTOKEN = process.env.REACT_APP_MAPTOKEN;
+const URLBACKEND = process.env.REACT_APP_URL_BACKEND;
 
 const MapView = () => {
 
@@ -12,7 +13,7 @@ const MapView = () => {
     useEffect(() => {
         async function fetchUserLocations() {
             try {
-                const response = await axios.get('http://localhost:3001/users/usersMap')
+                const response = await axios.get(`${URLBACKEND}/users/usersMap`)
                 const { locations } = response.data;
                 const geocodedLocations = await Promise.all(locations.map(geocodeLocation));
                 setUserLocations(geocodedLocations);

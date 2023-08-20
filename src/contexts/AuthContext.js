@@ -9,13 +9,14 @@ export const AuthContextProvider = ({ children }) => {
     const [profile, setProfile] = useState({});
     const navigate = useNavigate();
     const [reload, setReload] = useState(false);
+    const URLBACKEND = process.env.REACT_APP_URL_BACKEND;
 
     const getMyProfile = async () => {
         if (!window.localStorage.getItem('token')) {
             return navigate('/')
         };
         try {
-            const response = await axios.get("http://localhost:3001/users/me", {
+            const response = await axios.get(`${URLBACKEND}/users/me`, {
                 headers: {
                     'Authorization': `Bearer ${window.localStorage.getItem('token')}`
                 }
@@ -30,7 +31,7 @@ export const AuthContextProvider = ({ children }) => {
     };
 
     const login = async (password, email) => {
-        const response = await axios.post("http://localhost:3001/users/login", {
+        const response = await axios.post(`${URLBACKEND}/users/login`, {
             password: password,
             email: email,
         });

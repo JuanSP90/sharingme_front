@@ -14,6 +14,8 @@ const Loginform = () => {
   const { login, setReload, reload } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  const URLBACKEND = process.env.REACT_APP_URL_BACKEND;
+
 
   const handleEmailChange = (event) => {
     const inputValue = event.target.value;
@@ -134,7 +136,7 @@ const Loginform = () => {
     };
 
     try {
-      await axios.post("http://localhost:3001/users/", newUser);
+      await axios.post(`${URLBACKEND}/users/`, newUser);
       await login(newUser.password, newUser.email);
       navigate(`/user/${userName}`);
     } catch (error) {

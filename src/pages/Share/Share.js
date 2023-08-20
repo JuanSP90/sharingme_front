@@ -9,9 +9,10 @@ import qrIcon from '../../images/qr-code-share.png'
 const Share = () => {
     const { profile } = useContext(AuthContext);
     const [showQRPopup, setShowQRPopup] = useState(false);
+    const URLBACKEND = process.env.REACT_APP_URL_BACKEND;
 
     const ShareButton = async () => {
-        const shareURL = `http://localhost:3000/user/${profile.userName}`;
+        const shareURL = `${URLBACKEND}/user/${profile.userName}`;
         try {
             await navigator.share({ url: shareURL });
         } catch (error) {
@@ -39,7 +40,7 @@ const Share = () => {
                     <button className="btn" onClick={handleCloseQRPopup} style={{ backgroundColor: 'red', margin: '5px' }}>X</button>
                     <div>
                         <QRCode
-                            value={`http://localhost:3000/user/${profile.userName}`}
+                            value={`${URLBACKEND}/user/${profile.userName}`}
                         />
                     </div>
                 </div>

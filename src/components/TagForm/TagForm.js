@@ -16,7 +16,7 @@ const TagForm = ({ updateTags }) => {
 			return;
 		}
 
-		updateTags(tag1, null, null); // Solo actualiza tag1, mantén tag2 y tag3 sin cambios
+		updateTags(tag1, null, null);
 		setTag1('');
 		setTag1Error(false);
 	};
@@ -28,7 +28,7 @@ const TagForm = ({ updateTags }) => {
 			return;
 		}
 
-		updateTags(null, tag2, null); // Solo actualiza tag2, mantén tag1 y tag3 sin cambios
+		updateTags(null, tag2, null);
 		setTag2('');
 		setTag2Error(false);
 	};
@@ -40,7 +40,7 @@ const TagForm = ({ updateTags }) => {
 			return;
 		}
 
-		updateTags(null, null, tag3); // Solo actualiza tag3, mantén tag1 y tag2 sin cambios
+		updateTags(null, null, tag3);
 		setTag3('');
 		setTag3Error(false);
 	};

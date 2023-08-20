@@ -7,11 +7,12 @@ import Title from '../../components/Title/Title'
 const ForgotPasswordPopup = () => {
     const [email, setEmail] = useState('');
     const navigate = useNavigate();
+    const URLBACKEND = process.env.REACT_APP_URL_BACKEND;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:3001/users/forgotPassword/', {
+            await axios.post(`${URLBACKEND}/users/forgotPassword/`, {
                 email: email
             });
         } catch (error) {
