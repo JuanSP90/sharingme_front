@@ -9,7 +9,9 @@ import { Helmet } from 'react-helmet';
 const Explore = () => {
     const [users, setUsers] = useState([]);
     const [itemOffset, setItemOffset] = useState(0);
-    const itemsPerPage = 10;
+    const itemsPerPage = 9;
+
+    const URLBACKEND = process.env.REACT_APP_URL_BACKEND;
 
     useEffect(() => {
         getAllUsers();
@@ -17,7 +19,7 @@ const Explore = () => {
 
     const getAllUsers = async () => {
         try {
-            const response = await axios.get(`http://localhost:3001/users/`);
+            const response = await axios.get(`${URLBACKEND}/users/`);
             setUsers(response.data);
         } catch (error) {
             console.error('Error al obtener los usuarios', error);
@@ -40,7 +42,7 @@ const Explore = () => {
             <Menu />
             <div className="ExploreCardContainer">
                 {users.slice(itemOffset, itemOffset + itemsPerPage).map((user) => (
-                    <ExploreCard key={user.id} userName={user.userName} backgroundColor={user.backgroundColor} description={user.description} location={user.location} />
+                    <ExploreCard key={user.id} userName={user.userName} backgroundColor={user.backgroundColor} description={user.description} location={user.location} tag1={user.tag1} tag2={user.tag2} tag3={user.tag3} />
                 ))}
             </div>
             <ReactPaginate

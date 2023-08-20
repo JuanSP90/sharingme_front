@@ -11,6 +11,7 @@ const ProfileUpdate = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [emailError, setEmailError] = useState(false);
+    const URLBACKEND = process.env.REACT_APP_URL_BACKEND;
 
     const handleEmailChange = (event) => {
         const inputValue = event.target.value;
@@ -20,7 +21,7 @@ const ProfileUpdate = () => {
 
     const EmailChange = async () => {
         try {
-            await axios.patch('http://localhost:3001/users/updateUser', { email: email }, {
+            await axios.patch(`${URLBACKEND}/users/updateUser`, { email: email }, {
                 headers: {
                     'Authorization': `Bearer ${window.localStorage.getItem('token')}`
                 }
@@ -60,7 +61,7 @@ const ProfileUpdate = () => {
 
     const PasswordChange = async () => {
         try {
-            await axios.patch('http://localhost:3001/users/updateUser', { password: password }, {
+            await axios.patch(`${URLBACKEND}/users/updateUser`, { password: password }, {
                 headers: {
                     'Authorization': `Bearer ${window.localStorage.getItem('token')}`
                 }
@@ -102,7 +103,7 @@ const ProfileUpdate = () => {
 
     const NameChange = async () => {
         try {
-            await axios.patch('http://localhost:3001/users/updateUser', { userName: username }, {
+            await axios.patch(`${URLBACKEND}/users/updateUser`, { userName: username }, {
                 headers: {
                     'Authorization': `Bearer ${window.localStorage.getItem('token')}`
                 }
