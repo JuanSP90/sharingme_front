@@ -12,6 +12,7 @@ import Popup from '../../components/Popup/Popup';
 import { ChromePicker } from 'react-color';
 import TagForm from '../../components/TagForm/TagForm';
 
+
 const Profile = () => {
 	const { userName } = useParams();
 	const [profileData, setProfileData] = useState(null);
@@ -175,7 +176,9 @@ const Profile = () => {
 			{profileData ? (
 				<div className="profilezone">
 					<h1>{profileData.userName}</h1>
-					<p>{profileData.description}</p>
+					<div style={{ width: '80vw' }}>
+						<p>{profileData.description}</p>
+					</div>
 					<h4>{profileData.tag1} | {profileData.tag2} | {profileData.tag3}</h4>
 					<p>City: {profileData.location}</p>
 					{profileData.links.map((link) => (

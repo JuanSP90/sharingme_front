@@ -48,7 +48,7 @@ const TagForm = ({ updateTags }) => {
 	return (
 		<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'row', }}>
 			<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', }}>
-				<form onSubmit={addTag1}>
+				<form onSubmit={addTag1} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
 					<input
 						type="text"
 						placeholder="Max length 10"
@@ -75,7 +75,7 @@ const TagForm = ({ updateTags }) => {
 				</form>
 			</div>
 			<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', }}>
-				<form onSubmit={addTag2}>
+				<form onSubmit={addTag2} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
 					<input
 						type="text"
 						placeholder="Max length 10"
@@ -90,7 +90,7 @@ const TagForm = ({ updateTags }) => {
 				</form>
 			</div>
 			<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', }}>
-				<form onSubmit={addTag3}>
+				<form onSubmit={addTag3} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
 					<input
 						type="text"
 						placeholder="Max length 10"
