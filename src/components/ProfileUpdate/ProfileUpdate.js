@@ -142,7 +142,8 @@ const ProfileUpdate = () => {
                 theme: "colored",
             });
             navigate(`/user/${username}`);
-
+            getMyProfile();
+            hideModal()
 
         } catch (error) {
             console.error('Error al actualizar el userName', error);
