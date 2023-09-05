@@ -8,7 +8,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 100vw;
+    width: 100%;
     padding: 5px;
     border-bottom: 1px rgb(91, 87, 87, 0.5) solid;
 }
@@ -24,6 +24,19 @@
 }
 
 @media (max-width: 768px) {
+    .navGame {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        width: auto;
+        height: auto;
+    }
+
+    .divMenuP {
+        height: auto;
+        width: auto;
+    }
+
     .navlogo {
         font-size: 20px;
     }
@@ -49,7 +62,7 @@
         width: 100%;
         height: auto;
         padding: 10px;
-        margin: 10px;
+        margin: 5px;
         transform: translateX(-100%);
         transition: 0.3s ease all;
     }
@@ -89,6 +102,11 @@
 
     button {
         background-color: #fff;
+    }
+
+    .fondoNavToggle {
+        display: flex;
+        justify-content: flex-start
     }
 }
 

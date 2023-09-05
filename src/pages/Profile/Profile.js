@@ -40,14 +40,12 @@ const Profile = () => {
 		} finally { setIsLoading(false); }
 	};
 
-	const addLink = (newLink,
-		// newIcon
+	const addLink = (newLink
 	) => {
 		setProfileData((prevData) => ({
 			...prevData,
 			links: [...prevData.links, {
 				url: newLink
-				// , icon: newIcon 
 			}],
 		}));
 	};
@@ -85,13 +83,6 @@ const Profile = () => {
 			location: newLocation,
 		}));
 	};
-
-	// const toggleIconSelection = (socialMedia) => {
-	//     setSelectedIcons((prevSelectedIcons) => ({
-	//         ...prevSelectedIcons,
-	//         [socialMedia]: !prevSelectedIcons[socialMedia],
-	//     }));
-	// };
 
 	const saveChanges = async () => {
 		if (profileData._id) {

@@ -97,3 +97,14 @@ li {
     width: 75px;
     margin-bottom: 0.25em;
 }
+
+@media (max-width: 768px) {
+    .configZone {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* Estilos para pantallas medianas */
+}
