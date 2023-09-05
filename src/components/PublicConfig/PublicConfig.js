@@ -145,7 +145,7 @@ const PublicConfig = () => {
 
 
     return (
-        <div style={{}}>
+        <div>
             <Button onClick={showModal} style={{ backgroundColor: 'rgb(88, 175, 221)', color: 'black', fontWeight: 'bold' }}>Public User Config</Button>
             <Modal show={isOpen} onHide={hideModal} size="lg" >
                 <Modal.Header>

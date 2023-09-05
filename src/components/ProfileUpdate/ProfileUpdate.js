@@ -1,17 +1,37 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import './ProfileUpdate.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '../../contexts/AuthContext';
 import axios from 'axios'
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import { useNavigate } from 'react-router-dom';
 
 const ProfileUpdate = () => {
-    const { reload, setReload } = useContext(AuthContext);
+    const { reload, setReload, getMyProfile } = useContext(AuthContext);
     const [username, setUsername] = useState()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [emailError, setEmailError] = useState(false);
     const URLBACKEND = process.env.REACT_APP_URL_BACKEND;
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (reload) {
+            window.location.reload();
+            setReload(false);
+        }
+    }, [reload, setReload]);
+
+    const [isOpen, setIsOpen] = useState(false);
+    const showModal = () => {
+        setIsOpen(true);
+    };
+
+    const hideModal = () => {
+        setIsOpen(false);
+    };
 
     const handleEmailChange = (event) => {
         const inputValue = event.target.value;
@@ -38,6 +58,7 @@ const ProfileUpdate = () => {
                 theme: "colored",
             });
             setReload(!reload)
+            hideModal()
 
         } catch (error) {
 
@@ -66,9 +87,9 @@ const ProfileUpdate = () => {
                     'Authorization': `Bearer ${window.localStorage.getItem('token')}`
                 }
             })
-            setReload(!reload)
 
-            toast.success('Npmbre de usuario cambiado con exito', {
+
+            await toast.success('Npmbre de usuario cambiado con exito', {
                 position: "top-center",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -78,6 +99,8 @@ const ProfileUpdate = () => {
                 progress: undefined,
                 theme: "colored",
             });
+            setReload(!reload)
+            hideModal()
 
         } catch (error) {
 
@@ -95,7 +118,6 @@ const ProfileUpdate = () => {
 
         }
     }
-
 
     const handleUsernameChange = (event) => {
         setUsername(event.target.value)
@@ -119,6 +141,7 @@ const ProfileUpdate = () => {
                 progress: undefined,
                 theme: "colored",
             });
+            navigate(`/user/${username}`);
 
 
         } catch (error) {
@@ -134,7 +157,8 @@ const ProfileUpdate = () => {
                 theme: "colored",
             });
         }
-        setReload(!reload)
+
+
     }
 
 
@@ -145,25 +169,44 @@ const ProfileUpdate = () => {
 
     return (
         <div>
-            <div>
-                <input type="text" value={username} placeholder="Insert new Username" onChange={handleUsernameChange} />
-                <button className='btn'
-                    style={{ height: '30px', width: 'auto', margin: '10px', }}
-                    onClick={NameChange}>Submit New Username</button>
-            </div>
-            <div>
-                <input type="text" value={email} onChange={handleEmailChange} placeholder="Insert new Email" />
-                <button className='btn'
-                    style={{ height: '30px', width: 'auto', margin: '10px' }}
-                    onClick={EmailChange}>Submit New Email</button>
-            </div>
-            <div>
-                <input type="password" value={password} onChange={handlePasswordChange} placeholder="Insert new Password" />
-                <button className='btn'
-                    style={{ height: '30px', width: 'auto', margin: '10px' }}
-                    onClick={PasswordChange}>Submit New Password</button>
-            </div>
-            <ToastContainer />
+            <Button onClick={showModal} style={{ backgroundColor: 'red', color: 'black', fontWeight: 'bold' }}>Private User Config</Button>
+            <Modal show={isOpen} onHide={hideModal} size="lg"  >
+                <Modal.Header>
+                    <Modal.Title style={{ fontSize: 'larger', fontWeight: 'bold' }}>Private settings</Modal.Title>
+                </Modal.Header>
+                <Modal.Body
+                    style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'start' }}
+                >
+                    <div>
+                        <input type="text" value={username} placeholder="Insert new Username" onChange={handleUsernameChange}
+                            className='formulario2'
+                        />
+                        <Button className='btn'
+                            style={{ height: 'auto', width: 'auto', margin: '10px', }}
+                            onClick={NameChange}>Submit New Username</Button>
+                    </div>
+
+                    <div>
+                        <input className='formulario2' type="text" value={email} onChange={handleEmailChange} placeholder="Insert new Email" />
+                        <Button className='btn'
+                            style={{ height: 'auto', width: 'auto', margin: '10px' }}
+                            onClick={EmailChange}>Submit New Email </Button>
+                    </div>
+
+                    <div>
+                        <input className='formulario2' type="password" value={password} onChange={handlePasswordChange} placeholder="Insert new Password" />
+                        <Button className='btn'
+                            style={{ height: 'auto', width: 'auto', margin: '10px' }}
+                            onClick={PasswordChange}>Submit New Password</Button>
+                    </div>
+
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button style={{ height: 'auto', width: 'auto', fontWeight: 'bold', color: 'black', margin: '10px', backgroundColor: 'grey' }} onClick={hideModal}>Cancel</Button>
+                </Modal.Footer>
+                <ToastContainer />
+            </Modal>
+
         </div>
     )
 }

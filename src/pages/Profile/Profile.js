@@ -13,6 +13,7 @@ import Popup from '../../components/Popup/Popup';
 // import TagForm from '../../components/TagForm/TagForm';
 import PublicConfig from '../../components/PublicConfig/PublicConfig';
 import SpinnerLoad from '../../components/Spinner/Spinner';
+import ProfileUpdate from '../../components/ProfileUpdate/ProfileUpdate';
 
 
 const Profile = () => {
@@ -242,11 +243,12 @@ const Profile = () => {
 
 						// </div>
 						<div className="divConfig" style={{ display: 'flex', justifyContent: 'space-between' }}>
-							{showPopup && <Popup onClose={handlePopupClose} />}
+							{/* {showPopup && <Popup onClose={handlePopupClose} />} */}
 							{/* {showPublic && <PublicConfig onClose={handlePublicClose} />} */}
 							{/* <button className="btn" style={{ backgroundColor: 'lightblue' }} onClick={handlePublicOpen}>Public User Config</button> */}
 							<PublicConfig />
-							<button className="btn" style={{ backgroundColor: 'red' }} onClick={handlePopupOpen}>Private User Config</button>
+							<ProfileUpdate />
+							{/* <button className="btn" style={{ backgroundColor: 'red' }} onClick={handlePopupOpen}>Private User Config</button> */}
 						</div>
 					)}
 				</div>
