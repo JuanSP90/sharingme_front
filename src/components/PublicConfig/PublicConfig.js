@@ -185,8 +185,8 @@ const PublicConfig = () => {
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button style={{ backgroundColor: 'grey' }} onClick={hideModal}>Cancel</Button>
-                    <Button className='btn' style={{ backgroundColor: 'rgb(125, 239, 125)', color: 'black' }} onClick={saveChanges}>Save changes</Button>
+                    <Button style={{ height: 'auto', width: 'auto', fontWeight: 'bold', color: 'black', margin: '10px', backgroundColor: 'grey' }} onClick={hideModal}>Cancel</Button>
+                    <Button className='btn' style={{ height: 'auto', width: 'auto', fontWeight: 'bold', color: 'black', margin: '10px', backgroundColor: 'rgb(125, 239, 125)' }} onClick={saveChanges}>Save changes</Button>
                 </Modal.Footer>
             </Modal>
         </div>
