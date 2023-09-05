@@ -146,13 +146,18 @@ const PublicConfig = () => {
 
     return (
         <div style={{}}>
-            <Button onClick={showModal} style={{ backgroundColor: 'rgb(88, 175, 221)', color: 'black' }}>Public User Config</Button>
+            <Button onClick={showModal} style={{ backgroundColor: 'rgb(88, 175, 221)', color: 'black', fontWeight: 'bold' }}>Public User Config</Button>
             <Modal show={isOpen} onHide={hideModal} size="lg" >
                 <Modal.Header>
-                    <Modal.Title>Customize your public environment</Modal.Title>
+                    <Modal.Title style={{ fontSize: 'larger', fontWeight: 'bold' }}>Customize your public environment</Modal.Title>
                 </Modal.Header>
                 <Modal.Body style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', border: '1px solid black', width: '40%', height: '50vh' }}>
+
+                    <div style={{
+                        display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column',
+                        width: '90%', height: 'auto',
+                        marginBottom: '15px'
+                    }}>
                         <label htmlFor="background-color" style={{ fontSize: 'larger', marginBottom: '10px', fontWeight: 'bold' }}>Select the desired background color </label>
                         <ChromePicker
                             color={backgroundColor}
@@ -160,13 +165,17 @@ const PublicConfig = () => {
                             style={{ width: '100%', zIndex: 2 }}
                         />
                     </div>
-                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', border: '1px solid black', width: '60%', height: '50vh' }}>
+
+                    <div style={{
+                        display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column',
+                        width: '90%', height: 'auto'
+                    }}>
                         <Description addDescription={addDescription} loggedIn={true} />
                         <TagForm updateTags={updateTags} />
                         <Location addLocation={addLocation} loggedIn={true} />
                     </div>
 
-                    <div style={{ display: 'flex', margin: '15px', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', border: '1px solid black', width: '90%' }}>
+                    <div style={{ display: 'flex', margin: '15px', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', width: '90%', height: 'auto' }}>
                         <LinkForm addLink={addLink} loggedIn={true} />
                         <ul>
                             {profileData && profileData.links && profileData.links.map((link) => (

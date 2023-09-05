@@ -1,34 +1,20 @@
 import React, { useState } from 'react';
-import facebookIcon from '../../images/facebookIcon.png';
-import instagramIcon from '../../images/instagramIcon.png';
-import tiktokIcon from '../../images/tiktokIcon.png';
-import twitterIcon from '../../images/twitterIcon.png';
+import Button from 'react-bootstrap/Button';
+import './LinkForm.css'
 
 const LinkForm = ({ addLink, loggedIn }) => {
     const [url, setUrl] = useState('');
-    // const [selectedIcon, setSelectedIcon] = useState('facebook');
 
-    // const icons = [
-    //     { name: 'facebook', src: facebookIcon },
-    //     { name: 'instagram', src: instagramIcon },
-    //     { name: 'tiktok', src: tiktokIcon },
-    //     { name: 'twitter', src: twitterIcon },
-    // ];
 
     const handleSubmit = (e) => {
-        console.log('antes del handlesubmit', url)
         e.preventDefault();
         if (url.trim() !== '') {
-            // const linkData = {
-            //     url: url.trim(),
-            //     // icon: selectedIcon
-            // };
-            // addLink(linkData);
+
             addLink(url)
-            console.log('mitad del handlesubmit', url)
+
             setUrl('');
-            console.log('despues del handlesubmit', url)
-            // setSelectedIcon('facebook');
+
+
         }
     };
 
@@ -37,27 +23,16 @@ const LinkForm = ({ addLink, loggedIn }) => {
     }
 
     return (
-        <form onSubmit={handleSubmit} style={{ display: 'flex', margin: '15px', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', border: '1px solid black', width: 'auto' }}>
-            {/* <div className="icon-selector">
-                {icons.map(icon => (
-                    <img
-                        key={icon.name}
-                        src={icon.src}
-                        alt={icon.name}
-                        className={`socialIcon${selectedIcon === icon.name ? ' selected' : ''}`}
-                        onClick={() => setSelectedIcon(icon.name)}
-                        style={{ width: '30px', margin: '5px' }}
-                    />
-                ))}
-            </div> */}
+        <form onSubmit={handleSubmit} style={{ display: 'flex', margin: '15px', justifyContent: 'center', alignItems: 'center', flexDirection: 'row', width: 'auto' }}>
             <input
+                className='formulario'
                 type="text"
                 placeholder="URL"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
-                style={{ height: '30px', width: '200px', margin: '10px' }}
+                style={{ height: '50px', width: '90%' }}
             />
-            <button className='btn' style={{ height: '30px', width: 'auto', margin: '10px', backgroundColor: 'rgb(88, 175, 221)' }} type="submit">Add Link</button>
+            <Button className='btn' style={{ height: 'auto', width: 'auto', backgroundColor: 'rgb(88, 175, 221)', fontWeight: 'bold', color: 'black', margin: '10px' }} type="submit">Add Link</Button>
         </form>
     );
 };
