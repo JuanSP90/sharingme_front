@@ -17,13 +17,6 @@ const ProfileUpdate = () => {
     const URLBACKEND = process.env.REACT_APP_URL_BACKEND;
     const navigate = useNavigate();
 
-    useEffect(() => {
-        if (reload) {
-            window.location.reload();
-            setReload(false);
-        }
-    }, [reload, setReload]);
-
     const [isOpen, setIsOpen] = useState(false);
     const showModal = () => {
         setIsOpen(true);

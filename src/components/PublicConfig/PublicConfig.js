@@ -43,13 +43,6 @@ const PublicConfig = () => {
         fetchUserProfile(userName);
     }, [userName]);
 
-    useEffect(() => {
-        if (reload) {
-            window.location.reload();
-            setReload(false);
-        }
-    }, [reload, setReload]);
-
     const addLink = (newLink
     ) => {
         setProfileData((prevData) => ({
@@ -115,7 +108,9 @@ const PublicConfig = () => {
                         },
                     }
                 );
+                console.log('realod antes', reload)
                 setReload(!reload);
+                console.log('reload despues', reload)
                 getMyProfile();
                 hideModal()
             } catch (error) {

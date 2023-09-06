@@ -52,3 +52,48 @@
     cursor: pointer;
     margin: 5%
 }
+
+.imgShare:hover {
+    background-color: grey;
+    border-radius: 20%;
+}
+
+@media (max-width: 768px) {
+    .botonazos {
+        display: flex;
+        flex-direction: column;
+        margin: 30px;
+    }
+
+    .imgShare {
+        max-width: 20vw;
+        max-height: 20wh;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .botonazos {
+        display: flex;
+        flex-direction: column;
+        margin: 30px;
+    }
+
+    .imgShare {
+        max-width: 20vw;
+        max-height: 20wh;
+    }
+}
+
+
+@media only screen and (max-width: 639px) {
+    .botonazos {
+        display: flex;
+        flex-direction: column;
+        margin: 30px;
+    }
+
+    .imgShare {
+        max-width: 20vw;
+        max-height: 20wh;
+    }
+}

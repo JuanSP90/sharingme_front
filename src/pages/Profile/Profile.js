@@ -8,7 +8,6 @@ import NotFound from '../NotFound/NotFound';
 import PublicConfig from '../../components/PublicConfig/PublicConfig';
 import SpinnerLoad from '../../components/Spinner/Spinner';
 import ProfileUpdate from '../../components/ProfileUpdate/ProfileUpdate';
-import ProfileZone from '../../components/ProfileZone/ProfileZone';
 import { Badge, Container, Row, Col } from 'react-bootstrap';
 
 
@@ -24,7 +23,7 @@ const Profile = () => {
 
 	useEffect(() => {
 		fetchUserProfile(userName);
-	}, [userName]);
+	}, [userName, reload]);
 
 
 	const fetchUserProfile = async (userName) => {
@@ -67,18 +66,6 @@ const Profile = () => {
 			<Menu />
 			{profileData ? (
 				<div className="profilezone">
-					{/* <h1 >{profileData.userName}</h1>
-					<h4>{profileData.tag1} | {profileData.tag2} | {profileData.tag3}</h4>
-					<h5>From: <span>{profileData.location}</span></h5>
-					<div style={{ width: '50vw', height: 'auto', backgroundColor, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-						<p>{profileData.description}</p>
-					</div>
-
-
-					{profileData.links.map((link) => (
-						<ProfileLink key={link._id} link={link}
-						/>
-					))} */}
 					<Container>
 						<Row>
 							<Col style={{ display: 'flex', justifyContent: ' center', alignItems: 'center', flexDirection: 'column' }}>
@@ -117,13 +104,10 @@ const Profile = () => {
 						</Row>
 					</Container>
 					{isProfileEditable && (
-
 						<div className='configZone'>
 							<PublicConfig />
 							<ProfileUpdate />
-
 						</div>
-
 					)}
 				</div>
 			) : (
