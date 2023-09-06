@@ -65,8 +65,8 @@ const TagForm = ({ updateTags }) => {
 					<Button
 						className='btn'
 						style={{
-							height: 'auto', width: 'auto', backgroundColor: 'rgb(88, 175, 221)', fontWeight: 'bold', color: 'black', margin: '10px',
-							borderColor: tag1Error ? 'red' : '',
+							height: 'auto', width: 'auto', fontWeight: 'bold', color: 'black', margin: '10px',
+							backgroundColor: tag1Error ? 'red' : 'rgb(88, 175, 221)'
 						}}
 						type='submit'
 					>
@@ -87,7 +87,10 @@ const TagForm = ({ updateTags }) => {
 						}}
 						style={{ height: '50px', width: '80%', margin: '10px', borderColor: tag2Error ? 'red' : '', }}
 					/>
-					<Button className='btn' style={{ height: 'auto', width: 'auto', backgroundColor: 'rgb(88, 175, 221)', fontWeight: 'bold', color: 'black', margin: '10px', borderColor: tag2Error ? 'red' : '', }} type='submit'>Add Tag2</Button>
+					<Button className='btn' style={{
+						height: 'auto', width: 'auto', fontWeight: 'bold', color: 'black', margin: '10px',
+						backgroundColor: tag2Error ? 'red' : 'rgb(88, 175, 221)'
+					}} type='submit'>Add Tag2</Button>
 				</form>
 			</div>
 			<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', }}>
@@ -103,7 +106,10 @@ const TagForm = ({ updateTags }) => {
 						}}
 						style={{ height: '50px', width: '80%', margin: '10px', borderColor: tag3Error ? 'red' : '', }}
 					/>
-					<Button className='btn' style={{ height: 'auto', width: 'auto', backgroundColor: 'rgb(88, 175, 221)', fontWeight: 'bold', color: 'black', margin: '10px', borderColor: tag3Error ? 'red' : '', }} type='submit'>Add Tag3</Button>
+					<Button className='btn' style={{
+						height: 'auto', width: 'auto', fontWeight: 'bold', color: 'black', margin: '10px',
+						backgroundColor: tag3Error ? 'red' : 'rgb(88, 175, 221)'
+					}} type='submit'>Add Tag3</Button>
 				</form>
 			</div>
 		</div>
