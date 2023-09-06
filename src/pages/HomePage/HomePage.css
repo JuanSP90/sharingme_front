@@ -29,7 +29,7 @@
 }
 
 @media (max-width: 767px) {
-    #imagenHome {
+    #imagenContainerHome {
         display: none;
     }
 }

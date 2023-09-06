@@ -46,6 +46,7 @@ export const AuthContextProvider = ({ children }) => {
     }
 
     useEffect(() => {
+        console.log('ejecutando getprofile en el authcontext')
         getMyProfile()
     }, [reload]);
 

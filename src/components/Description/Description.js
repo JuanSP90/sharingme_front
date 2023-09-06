@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Button from 'react-bootstrap/Button';
+import './Description.css'
 
 const Description = ({ addDescription, loggedIn }) => {
 
@@ -19,15 +21,19 @@ const Description = ({ addDescription, loggedIn }) => {
     }
 
     return (
-        <form onSubmit={handleSubmit} style={{ display: 'flex', margin: '15px', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', border: '1px solid black', width: '90%' }}>
-            <textarea
+        <form onSubmit={handleSubmit} style={{
+            display: 'flex', margin: '15px', justifyContent: 'center', alignItems: 'center', flexDirection: 'row',
+            width: '90%'
+        }}>
+            <input
+                className='formulario'
                 type="text"
-                placeholder="Write the description to show on your profile"
+                placeholder="Write ur description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                style={{ height: '100px', width: '90%', margin: '3px' }}
+                style={{ height: 'auto', width: '90%', margin: '10px' }}
             />
-            <button className='btn' style={{ height: '30px', width: 'auto', margin: '10px', backgroundColor: 'rgb(88, 175, 221)' }} type="submit">Update Description</button>
+            <Button className='btn' style={{ height: 'auto', width: 'auto', margin: '10px', backgroundColor: 'rgb(88, 175, 221)', color: 'black', fontWeight: 'bold' }} type="submit">Update Description</Button>
         </form>
     );
 };

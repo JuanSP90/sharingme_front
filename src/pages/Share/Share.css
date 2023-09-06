@@ -11,22 +11,9 @@
     margin: 30px;
 }
 
-.botonCompartirPerfil {
-    background-color: rgb(125, 239, 125);
-    margin-bottom: 100px;
-    width: 30vw;
-    height: 20vh;
-}
-
-.botonAbrirPop {
-    background-color: rgb(88, 175, 221);
-    width: 30vw;
-    height: 20vh;
-}
-
 .qr-popup {
     position: fixed;
-    background-color: rgb(0, 0, 0, 0.3);
+    background-color: rgb(0, 0, 0, 0.9);
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -37,11 +24,6 @@
 
 }
 
-.close-btn {
-    margin: 20px;
-    background-color: red;
-}
-
 .imgShare {
     display: flex;
     justify-content: center;
@@ -50,5 +32,65 @@
     width: 35vw;
     height: 60vh;
     cursor: pointer;
-    margin: 5%
+    margin: 5%;
+    transition: background-color 0.4s ease;
+    border-radius: 20%;
+}
+
+.imgShare:hover {
+    background-color: rgb(125, 239, 125);
+    border-radius: 20%;
+}
+
+@media (max-width: 768px) {
+    .SharePageContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .botonazos {
+        display: flex;
+        flex-direction: column;
+        margin: 30px;
+    }
+
+    .imgShare {
+        width: 50%;
+        max-width: 100%;
+        height: auto;
+        max-height: none;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .botonazos {
+        display: flex;
+        flex-direction: column;
+        margin: 30px;
+    }
+
+    .imgShare {
+        width: 50%;
+        max-width: 100%;
+        height: auto;
+        max-height: none;
+    }
+}
+
+
+@media only screen and (max-width: 639px) {
+    .botonazos {
+        display: flex;
+        flex-direction: column;
+        margin: 30px;
+    }
+
+    .imgShare {
+        width: 50%;
+        max-width: 100%;
+        height: auto;
+        max-height: none;
+    }
 }

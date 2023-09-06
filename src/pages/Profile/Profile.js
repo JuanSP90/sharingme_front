@@ -1,31 +1,29 @@
 import React, { useState, useEffect, useContext } from 'react';
-import LinkForm from '../../components/LinkForm/LinkForm';
 import axios from 'axios';
 import './Profile.css';
 import Menu from '../../components/Menu/Menu';
 import { AuthContext } from '../../contexts/AuthContext';
-import Description from '../../components/Description/Description';
-import Location from '../../components/Location/Location';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import NotFound from '../NotFound/NotFound';
-import Popup from '../../components/Popup/Popup';
-import { ChromePicker } from 'react-color';
-import TagForm from '../../components/TagForm/TagForm';
+import PublicConfig from '../../components/PublicConfig/PublicConfig';
+import SpinnerLoad from '../../components/Spinner/Spinner';
+import ProfileUpdate from '../../components/ProfileUpdate/ProfileUpdate';
+import { Badge, Container, Row, Col } from 'react-bootstrap';
 
 
 const Profile = () => {
 	const { userName } = useParams();
 	const [profileData, setProfileData] = useState(null);
 	const [backgroundColor, setBackgroundColor] = useState('#ffffff');
-	const { profile: loggedInUser, reload, setReload, getMyProfile } = useContext(AuthContext);
+	const { profile: loggedInUser, reload, setReload } = useContext(AuthContext);
 	const [isLoading, setIsLoading] = useState(false);
-	const [showPopup, setShowPopup] = useState(false);
 	const URLBACKEND = process.env.REACT_APP_URL_BACKEND;
+
 
 
 	useEffect(() => {
 		fetchUserProfile(userName);
-	}, [userName]);
+	}, [userName, reload]);
 
 
 	const fetchUserProfile = async (userName) => {
@@ -40,107 +38,7 @@ const Profile = () => {
 		} finally { setIsLoading(false); }
 	};
 
-	const addLink = (newLink,
-		// newIcon
-	) => {
-		setProfileData((prevData) => ({
-			...prevData,
-			links: [...prevData.links, {
-				url: newLink
-				// , icon: newIcon 
-			}],
-		}));
-	};
-
-	const deleteLink = (linkId) => {
-		setProfileData((prevData) => ({
-			...prevData,
-			links: prevData.links.filter((link) => link._id !== linkId),
-		}));
-	};
-
-	const addDescription = (newDescription) => {
-		setProfileData((prevData) => ({
-			...prevData,
-			description: newDescription,
-		}));
-	};
-
-	const updateTags = (updatedTag1, updatedTag2, updatedTag3) => {
-		setProfileData((prevData) => ({
-			...prevData,
-			tag1: updatedTag1 !== null ? updatedTag1 : prevData.tag1,
-			tag2: updatedTag2 !== null ? updatedTag2 : prevData.tag2,
-			tag3: updatedTag3 !== null ? updatedTag3 : prevData.tag3,
-		}));
-	};
-
-	const handleBackgroundColorChange = (color) => {
-		setBackgroundColor(color.hex);
-	};
-
-	const addLocation = (newLocation) => {
-		setProfileData((prevData) => ({
-			...prevData,
-			location: newLocation,
-		}));
-	};
-
-	// const toggleIconSelection = (socialMedia) => {
-	//     setSelectedIcons((prevSelectedIcons) => ({
-	//         ...prevSelectedIcons,
-	//         [socialMedia]: !prevSelectedIcons[socialMedia],
-	//     }));
-	// };
-
-	const saveChanges = async () => {
-		if (profileData._id) {
-			try {
-				await axios.patch(
-					`${URLBACKEND}/users/updateUser/`,
-					{
-						links: profileData.links,
-						description: profileData.description,
-						backgroundColor,
-						location: profileData.location,
-						tag1: profileData.tag1,
-						tag2: profileData.tag2,
-						tag3: profileData.tag3
-					},
-					{
-						headers: {
-							Authorization: `Bearer ${window.localStorage.getItem('token')}`,
-						},
-					}
-				);
-				window.scrollTo({
-					top: 0,
-					behavior: 'smooth'
-				});
-				setReload(!reload);
-				getMyProfile();
-			} catch (error) {
-				console.error('Error saving changes:', error);
-			}
-		}
-	};
-
 	const isProfileEditable = loggedInUser.userName === userName;
-
-	const ProfileLinkEditable = ({ link }) => {
-		return (
-			<li>
-				<div className="linkItem">
-					<div className="linkInfo">
-						<p className="linkInfo">{link.url}</p>
-						{isProfileEditable && (
-							<button style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', alignSelf: 'center', backgroundColor: 'red', height: 'auto', padding: '5px' }} className='btn' onClick={() => deleteLink(link._id)}>Delete</button>
-						)}
-					</div>
-				</div>
-			</li>
-		);
-	};
 
 	const ProfileLink = ({ link }) => {
 		const openLinkInNewTab = () => {
@@ -148,7 +46,7 @@ const Profile = () => {
 		};
 
 		return (
-			<li>
+			<li className='listadeenlaces'>
 				<div className="linksBox">
 					<button onClick={openLinkInNewTab}>
 						{link.url}
@@ -160,83 +58,63 @@ const Profile = () => {
 
 
 	if (isLoading) {
-		return <div>SPINNER</div>
+		return <SpinnerLoad />
 	}
 
-	const handlePopupOpen = () => {
-		setShowPopup(true);
-	};
-
-	const handlePopupClose = () => {
-		setShowPopup(false);
-	};
 	return (
-		<div className="App" style={{ backgroundColor }}>
+		<div className="App">
 			<Menu />
 			{profileData ? (
 				<div className="profilezone">
-					<h1>{profileData.userName}</h1>
-					<div style={{ width: '80vw' }}>
-						<p>{profileData.description}</p>
-					</div>
-					<h4>{profileData.tag1} | {profileData.tag2} | {profileData.tag3}</h4>
-					<p>City: {profileData.location}</p>
-					{profileData.links.map((link) => (
-						<ProfileLink key={link._id} link={link}
-						/>
-					))}
-					{isProfileEditable && (
+					<Container>
+						<Row>
+							<Col style={{ display: 'flex', justifyContent: ' center', alignItems: 'center', flexDirection: 'column' }}>
+								<h1 className='letras'>{profileData.userName}</h1>
 
-						<div className="configZone" >
-
-							{showPopup && <Popup onClose={handlePopupClose} />}
-							<button className="btn" style={{ backgroundColor: 'grey' }} onClick={handlePopupOpen}>internal user configuration</button>
-							<h1>Customize your public environment</h1>
-							<button className='btn' style={{ marginBottom: '10px' }} onClick={saveChanges}>Save changes</button>
-							<div style={{
-								display: "flex",
-								justifyContent: 'center',
-								alignItems: 'center',
-								width: "90%",
-								flexDirection: 'column'
-							}}
-							>
-								<div style={{
-									display: "flex",
-									justifyContent: 'space-evenly',
-									alignItems: 'center',
-									width: "90%",
-									flexDirection: 'row'
-								}}>
-									<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', border: '1px solid black', width: '40%', height: '50vh' }}>
-										<label htmlFor="background-color" style={{ fontSize: 'larger', marginBottom: '10px', fontWeight: 'bold' }}>Select the desired background color </label>
-										<ChromePicker
-											color={backgroundColor}
-											onChangeComplete={handleBackgroundColorChange}
-											style={{ width: '100%', zIndex: 2 }}
-										/>
-									</div>
-									<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', border: '1px solid black', width: '60%', height: '50vh' }}>
-										<Description addDescription={addDescription} loggedIn={true} />
-										<TagForm updateTags={updateTags} />
-										<Location addLocation={addLocation} loggedIn={true} />
-									</div>
+								<h4>
+									<Badge variant="primary">{profileData.tag1}</Badge>{" "}
+									<Badge variant="secondary">{profileData.tag2}</Badge>{" "}
+									<Badge variant="success">{profileData.tag3}</Badge>
+								</h4>
+								<h5>From: <span>{profileData.location}</span></h5>
+							</Col>
+						</Row>
+						<Row>
+							<Col>
+								<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '30px', padding: '30px', width: 'auto', boxShadow: '0 2px 6px rgba(0, 0, 0, 0.6)', backgroundColor }}>
+									<p className='descripcionP'>{profileData.description}</p>
 								</div>
-								<div style={{ display: 'flex', margin: '15px', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', border: '1px solid black', width: '90%' }}>
-									<LinkForm addLink={addLink} loggedIn={true} />
-									<ul>
+							</Col>
+						</Row>
+						<Row>
+							<Col>
+								<div className="page-container">
+									<h2>Visitame en:</h2>
+									<div className="links-container">
 										{profileData.links.map((link) => (
-											<ProfileLinkEditable key={link._id} link={link} />))}
-									</ul>
+											<a href={`https://${link.url}`} target="_blank" rel="noopener noreferrer" className='linksFinales'>
+												{link.url}
+											</a>
+										))}
+									</div>
 								</div>
-							</div>
+
+
+							</Col>
+						</Row>
+					</Container>
+					{isProfileEditable && (
+						<div className='configZone'>
+							<PublicConfig />
+							<ProfileUpdate />
 						</div>
 					)}
 				</div>
 			) : (
 				<NotFound />
-			)}
-		</div>
+			)
+			}
+		</div >
 	);
 };
 
