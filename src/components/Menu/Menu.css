@@ -24,6 +24,12 @@
 }
 
 @media (max-width: 768px) {
+    #ContainerMaster {
+        display: flex;
+        flex-direction: row;
+
+    }
+
     .navGame {
         display: flex;
         flex-direction: row;

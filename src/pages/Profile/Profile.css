@@ -12,7 +12,8 @@
 .profilezone {
     display: flex;
     flex-direction: column;
-    margin-top: 100px;
+    /* margin-top: 100px; */
+    margin-top: 3%;
     /* justify-content: center; */
     align-items: center;
     /* width: 100vw; */
@@ -114,6 +115,12 @@ li {
         justify-content: space-evenly;
         height: 20vh;
     }
+
+    .links-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
@@ -124,6 +131,12 @@ li {
         justify-content: space-evenly;
         align-items: center;
         height: 20vh;
+    }
+
+    .links-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 }
 
@@ -136,5 +149,11 @@ li {
         justify-content: space-evenly;
         align-items: center;
         height: 20vh;
+    }
+
+    .links-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 }
