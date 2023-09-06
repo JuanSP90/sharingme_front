@@ -146,7 +146,7 @@ const PublicConfig = () => {
 
     return (
         <div>
-            <Button onClick={showModal} style={{ backgroundColor: 'rgb(88, 175, 221)', color: 'black', fontWeight: 'bold' }}>Public User Config</Button>
+            <Button onClick={showModal} style={{ backgroundColor: 'rgb(88, 175, 221)', color: 'black', fontWeight: 'bold', fontFamily: 'Arial, sans-serif' }}>Public User Config</Button>
             <Modal show={isOpen} onHide={hideModal} size="lg" >
                 <Modal.Header>
                     <Modal.Title style={{ fontSize: 'larger', fontWeight: 'bold' }}>Customize your public environment</Modal.Title>
@@ -158,7 +158,8 @@ const PublicConfig = () => {
                         width: '90%', height: 'auto',
                         marginBottom: '15px'
                     }}>
-                        <label htmlFor="background-color" style={{ fontSize: 'larger', marginBottom: '10px', fontWeight: 'bold' }}>Select the desired background color </label>
+                        <label htmlFor="background-color" style={{ fontSize: 'larger', marginBottom: '10px', fontWeight: 'bold' }}>
+                            Select the desired color for your Explore Card & BackGround Description</label>
                         <ChromePicker
                             color={backgroundColor}
                             onChangeComplete={handleBackgroundColorChange}

@@ -63,9 +63,7 @@ const Profile = () => {
 	}
 
 	return (
-		<div className="App"
-		// style={{ backgroundColor }}
-		>
+		<div className="App">
 			<Menu />
 			{profileData ? (
 				<div className="profilezone">
@@ -85,6 +83,7 @@ const Profile = () => {
 						<Row>
 							<Col style={{ display: 'flex', justifyContent: ' center', alignItems: 'center', flexDirection: 'column' }}>
 								<h1 className='letras'>{profileData.userName}</h1>
+
 								<h4>
 									<Badge variant="primary">{profileData.tag1}</Badge>{" "}
 									<Badge variant="secondary">{profileData.tag2}</Badge>{" "}
@@ -95,22 +94,25 @@ const Profile = () => {
 						</Row>
 						<Row>
 							<Col>
-								<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '30px', backgroundColor, padding: '30px', width: 'auto' }}>
-									<p>{profileData.description}</p>
+								<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', borderRadius: '30px', padding: '30px', width: 'auto', boxShadow: '0 2px 6px rgba(0, 0, 0, 0.6)', backgroundColor }}>
+									<p className='descripcionP'>{profileData.description}</p>
 								</div>
 							</Col>
 						</Row>
 						<Row>
 							<Col>
-								<ul className="list-unstyled">
-									{profileData.links.map((link) => (
-										<li key={link._id} style={{ fontSize: '40px' }}>
-											<a href={`https://${link.url}`} target="_blank" rel="noopener noreferrer">
+								<div className="page-container">
+									<h2>Visitame en:</h2>
+									<div className="links-container">
+										{profileData.links.map((link) => (
+											<a href={`https://${link.url}`} target="_blank" rel="noopener noreferrer" className='linksFinales'>
 												{link.url}
 											</a>
-										</li>
-									))}
-								</ul>
+										))}
+									</div>
+								</div>
+
+
 							</Col>
 						</Row>
 					</Container>

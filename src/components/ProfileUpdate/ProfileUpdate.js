@@ -170,7 +170,7 @@ const ProfileUpdate = () => {
 
     return (
         <div>
-            <Button onClick={showModal} style={{ backgroundColor: 'red', color: 'black', fontWeight: 'bold' }}>Private User Config</Button>
+            <Button onClick={showModal} style={{ backgroundColor: 'red', color: 'black', fontWeight: 'bold', fontFamily: 'Arial, sans-serif' }}>Private User Config</Button>
             <Modal show={isOpen} onHide={hideModal} size="lg"  >
                 <Modal.Header>
                     <Modal.Title style={{ fontSize: 'larger', fontWeight: 'bold' }}>Private settings</Modal.Title>
