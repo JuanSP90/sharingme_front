@@ -3,13 +3,18 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    /* width: 100vw; */
+    height: auto;
 }
 
 .profilezone {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    margin-top: 100px;
+    /* justify-content: center; */
     align-items: center;
+    /* width: 100vw; */
+    height: 100vh;
 }
 
 li {
@@ -25,28 +30,6 @@ li {
     margin: 10px;
 }
 
-.configZone {
-    border: 1px solid black;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    padding: 20px;
-    margin: 10px;
-    width: 80vw;
-    height: auto;
-    justify-content: center;
-    align-items: center;
-}
-
-.socialIcon.selected {
-    border: 2px solid #ff0000;
-    width: 20px;
-    height: 20px;
-}
-
-.botonAbrirPopUp {
-    background-color: orange;
-}
 
 .linkInfo {
     display: flex;
@@ -64,60 +47,47 @@ li {
     flex-direction: row;
 }
 
-.twelve h1 {
-    font-size: 26px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    width: 160px;
-    text-align: center;
-    margin: auto;
-    white-space: nowrap;
-    padding-bottom: 13px;
-}
 
-.twelve h1:before {
-    background-color: rgb(88, 175, 221);
-    content: '';
-    display: block;
-    height: 3px;
-    width: 75px;
-    margin-bottom: 5px;
-}
-
-.twelve h1:after {
-    background-color: rgb(125, 239, 125);
-    content: '';
-    display: flex;
-    position: relative;
-    align-self: end;
-    right: 0;
-    bottom: 0;
-    height: 3px;
-    width: 75px;
-    margin-bottom: 0.25em;
-}
-
-.divConfig {
+.configZone {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+    width: 45vw;
+    justify-content: space-evenly;
+    margin: 40px
 }
+
+
+
 
 @media (max-width: 768px) {
     .configZone {
         display: flex;
         flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        height: 20vh;
     }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
-    /* Estilos para pantallas medianas */
+    .configZone {
+        display: flex;
+        flex-direction: column;
+        margin: 30px;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 20vh;
+    }
 }
 
-@media only screen and (max-width: 979px) {}
 
-@media only screen and (max-width: 767px) {}
-
-@media only screen and (max-width: 639px) {}
+@media only screen and (max-width: 639px) {
+    .configZone {
+        display: flex;
+        flex-direction: column;
+        margin: 30px;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 20vh;
+    }
+}
