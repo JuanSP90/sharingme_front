@@ -5,6 +5,7 @@ import './Share.css';
 import QRCode from "react-qr-code";
 import shareIcon from '../../images/share3.png'
 import qrIcon from '../../images/qr-code-share.png'
+import Button from 'react-bootstrap/Button';
 
 const Share = () => {
     const { profile } = useContext(AuthContext);
@@ -37,7 +38,7 @@ const Share = () => {
             </div>
             {showQRPopup && (
                 <div className="qr-popup">
-                    <button className="btn" onClick={handleCloseQRPopup} style={{ backgroundColor: 'red', margin: '5px' }}>X</button>
+                    <Button className="btn" onClick={handleCloseQRPopup} style={{ backgroundColor: 'red', margin: '5px', width: 'auto' }}>Close</Button>
                     <div>
                         <QRCode
                             value={`${URLBACKEND}/user/${profile.userName}`}
