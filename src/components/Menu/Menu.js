@@ -35,9 +35,11 @@ const Menu = () => {
                         justifyContent: 'space-around', alignItems: 'center'
                     }}
                 >
-                    <Navbar.Brand id="title" style={{ marginRight: '40%' }} >Sharing <span className="me">Me</span></Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav" >
+                    <Navbar.Brand id="title" className="ajuste"
+                    // style={{ marginRight: '40%' }}
+                    >Sharing <span className="me">Me</span></Navbar.Brand>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" className="ajuste" />
+                    <Navbar.Collapse id="basic-navbar-nav" className="ajuste" >
                         <Nav className="me-auto" >
                             <button onClick={() => { navigate(`/user/${profile.userName}`) }}><div id="imgBoton"><img src={profileFoto} alt="profile" className="img" /> <span className="text">Profile</span></div></button>
                             <button onClick={() => { navigate("/Share") }}><div id="imgBoton"><img src={share} alt="share" className="img" /> <span className="text">Share</span></div></button>

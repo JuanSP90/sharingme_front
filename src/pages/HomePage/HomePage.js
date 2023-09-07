@@ -69,7 +69,7 @@ const HomePage = () => {
                     justifyContent: 'center',
                     alignItems: 'center',
                     flexDirection: 'column',
-                    margin: '20px'
+                    margin: '2%'
                 }}
             >
                 <div class="twelve">

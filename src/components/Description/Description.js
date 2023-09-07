@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
-import './Description.css'
+import '../PublicConfig/PublicConfig.css'
 
 const Description = ({ addDescription, loggedIn }) => {
 
@@ -10,7 +10,6 @@ const Description = ({ addDescription, loggedIn }) => {
         e.preventDefault();
         if (description.trim() !== '') {
             const newDescription = description.trim()
-
             addDescription(newDescription);
             setDescription('');
         }
@@ -21,19 +20,17 @@ const Description = ({ addDescription, loggedIn }) => {
     }
 
     return (
-        <form onSubmit={handleSubmit} style={{
-            display: 'flex', margin: '15px', justifyContent: 'center', alignItems: 'center', flexDirection: 'row',
-            width: '90%'
-        }}>
+        <form onSubmit={handleSubmit}
+        //  className='containerformulario' 
+        >
             <input
                 className='formulario'
                 type="text"
                 placeholder="Write ur description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                style={{ height: 'auto', width: '90%', margin: '10px' }}
             />
-            <Button className='btn' style={{ height: 'auto', width: 'auto', margin: '10px', backgroundColor: 'rgb(88, 175, 221)', color: 'black', fontWeight: 'bold' }} type="submit">Update Description</Button>
+            <Button className='botonPublic' style={{ height: 'auto', width: 'auto', margin: '2%', backgroundColor: 'rgb(88, 175, 221)', color: 'black', fontWeight: 'bold' }} type="submit">Update <br />Description</Button>
         </form>
     );
 };

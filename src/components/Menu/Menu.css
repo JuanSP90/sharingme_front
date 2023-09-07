@@ -27,7 +27,12 @@
     #ContainerMaster {
         display: flex;
         flex-direction: row;
+        width: 30%;
+        background-color: grey;
+    }
 
+    .ajuste {
+        margin-right: 1%;
     }
 
     .navGame {
@@ -48,8 +53,16 @@
     }
 
     .navitems.open .text {
-        opacity: 100;
+        opacity: 1;
         font-family: 'Roboto';
+    }
+
+    button .text {
+        opacity: 1;
+        font-size: larger;
+        padding: 10px;
+        font-family: 'Roboto';
+        font-weight: 300;
     }
 
     .navitems.open button {
@@ -114,6 +127,15 @@
         display: flex;
         justify-content: flex-start
     }
+
+    #title {
+        margin-left: 10px;
+        font-size: 30px;
+        font-weight: normal;
+        font-family: 'Pacifico', cursive;
+        color: #000;
+        /* margin-right: 40%; */
+    }
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
@@ -124,6 +146,7 @@
     font-weight: normal;
     font-family: 'Pacifico', cursive;
     color: #000;
+    margin-right: 40%;
 }
 
 .me {

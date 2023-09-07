@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
-import './ProfileUpdate.css'
+import '../PublicConfig/PublicConfig.css'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AuthContext } from '../../contexts/AuthContext';
@@ -163,7 +163,7 @@ const ProfileUpdate = () => {
 
     return (
         <div>
-            <Button onClick={showModal} style={{ backgroundColor: 'red', color: 'black', fontWeight: 'bold', fontFamily: 'Arial, sans-serif' }}>Private User Config</Button>
+            <Button onClick={showModal} style={{ backgroundColor: 'red', color: 'black', fontFamily: 'Arial, sans-serif', width: 'auto', height: 'auto' }}>Private User Config</Button>
             <Modal show={isOpen} onHide={hideModal} size="lg"  >
                 <Modal.Header>
                     <Modal.Title style={{ fontSize: 'larger', fontWeight: 'bold' }}>Private settings</Modal.Title>
@@ -171,32 +171,32 @@ const ProfileUpdate = () => {
                 <Modal.Body
                     style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', alignItems: 'start' }}
                 >
-                    <div>
+                    <div classname='divPrivate' style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
                         <input type="text" value={username} placeholder="Insert new Username" onChange={handleUsernameChange}
-                            className='formulario2'
+                            className='formulario' style={{ minWidth: '50%' }}
                         />
-                        <Button className='btn'
-                            style={{ height: 'auto', width: 'auto', margin: '10px', }}
+                        <Button classname='buttonPrivate'
+                            style={{ height: '20%', width: 'auto', marginLeft: '2%', alignSelf: 'center', display: 'flex', justifySelf: 'center' }}
                             onClick={NameChange}>Submit New Username</Button>
                     </div>
 
-                    <div>
-                        <input className='formulario2' type="text" value={email} onChange={handleEmailChange} placeholder="Insert new Email" />
-                        <Button className='btn'
-                            style={{ height: 'auto', width: 'auto', margin: '10px' }}
+                    <div classname='divPrivate' style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                        <input className='formulario' type="text" value={email} onChange={handleEmailChange} placeholder="Insert new Email" style={{ minWidth: '50%' }} />
+                        <Button classname='buttonPrivate'
+                            style={{ height: 'auto', width: 'auto', marginLeft: '2%', alignSelf: 'center', display: 'flex', justifySelf: 'center' }}
                             onClick={EmailChange}>Submit New Email </Button>
                     </div>
 
-                    <div>
-                        <input className='formulario2' type="password" value={password} onChange={handlePasswordChange} placeholder="Insert new Password" />
-                        <Button className='btn'
-                            style={{ height: 'auto', width: 'auto', margin: '10px' }}
+                    <div classname='divPrivate' style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+                        <input className='formulario' style={{ minWidth: '50%' }} type="password" value={password} onChange={handlePasswordChange} placeholder="Insert new Password" />
+                        <Button classname='buttonPrivate'
+                            style={{ height: 'auto', width: 'auto', margin: '2%', minWidth: '20%' }}
                             onClick={PasswordChange}>Submit New Password</Button>
                     </div>
 
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button style={{ height: 'auto', width: 'auto', fontWeight: 'bold', color: 'black', margin: '10px', backgroundColor: 'grey' }} onClick={hideModal}>Cancel</Button>
+                    <Button style={{ height: 'auto', width: 'auto', fontWeight: 'bold', color: 'black', margin: '2%', backgroundColor: 'grey' }} onClick={hideModal}>Cancel</Button>
                 </Modal.Footer>
                 <ToastContainer />
             </Modal>
