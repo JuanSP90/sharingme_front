@@ -7,9 +7,14 @@ import Loginform from '../../components/Loginform/Loginform'
 import Title from '../../components/Title/Title';
 import Map from '../../components/Map/Map';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 
 const HomePage = () => {
+    const navigate = useNavigate();
+    const visit = () => {
+        navigate('/Explore');
+    }
 
     const [userCount, setUserCount] = useState(0);
     const [uniqueLocationCount, setUniqueLocationCount] = useState(0);
@@ -72,8 +77,11 @@ const HomePage = () => {
                     margin: '2%'
                 }}
             >
-                <div class="twelve">
-                    <h1> <span style={{ color: 'rgb(125, 239, 125)' }}>{uniqueLocationCount}</span> Locations, <span style={{ color: 'rgb(88, 175, 221)' }}>{userCount}</span> Users</h1>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+                    <Button className='botonXplore' onClick={() => {
+                        navigate('/Explore');
+                    }} style={{ padding: '2%', color: 'rgb(125, 239, 125)', backgroundColor: 'rgb(88, 175, 221)' }}>Explore the community</Button>
+                    <h1 className='contador'> <span style={{ color: 'rgb(125, 239, 125)' }}>{uniqueLocationCount}</span> Locations, <span style={{ color: 'rgb(88, 175, 221)' }}>{userCount}</span> Users</h1>
                 </div>
                 <Map />
             </div>
