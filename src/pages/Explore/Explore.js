@@ -9,7 +9,7 @@ import { Helmet } from 'react-helmet';
 const Explore = () => {
     const [users, setUsers] = useState([]);
     const [itemOffset, setItemOffset] = useState(0);
-    const itemsPerPage = 9;
+    const itemsPerPage = 6;
 
     const URLBACKEND = process.env.REACT_APP_URL_BACKEND;
 

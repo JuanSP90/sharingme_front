@@ -1,5 +1,5 @@
 import React, { useState, } from 'react';
-import './TagForm.css'
+import '../PublicConfig/PublicConfig.css'
 import Button from 'react-bootstrap/Button';
 
 const TagForm = ({ updateTags }) => {
@@ -17,7 +17,6 @@ const TagForm = ({ updateTags }) => {
 			setTag1Error(true);
 			return;
 		}
-
 		updateTags(tag1, null, null);
 		setTag1('');
 		setTag1Error(false);
@@ -60,17 +59,19 @@ const TagForm = ({ updateTags }) => {
 							setTag1(e.target.value);
 							setTag1Error(e.target.value.length > 10);
 						}}
-						style={{ height: '50px', width: '80%', margin: '10px', borderColor: tag1Error ? 'red' : '', }}
+						style={{
+							borderColor: tag1Error ? 'red' : '',
+						}}
 					/>
 					<Button
 						className='btn'
 						style={{
-							height: 'auto', width: 'auto', fontWeight: 'bold', color: 'black', margin: '10px',
+							height: 'auto', width: 'auto', fontWeight: 'bold', color: 'black', margin: '2%',
 							backgroundColor: tag1Error ? 'red' : 'rgb(88, 175, 221)'
 						}}
 						type='submit'
 					>
-						Add Tag1
+						Add <br />Tag1
 					</Button>
 				</form>
 			</div>
@@ -85,12 +86,12 @@ const TagForm = ({ updateTags }) => {
 							setTag2(e.target.value);
 							setTag2Error(e.target.value.length > 10);
 						}}
-						style={{ height: '50px', width: '80%', margin: '10px', borderColor: tag2Error ? 'red' : '', }}
+						style={{ borderColor: tag2Error ? 'red' : '', }}
 					/>
 					<Button className='btn' style={{
-						height: 'auto', width: 'auto', fontWeight: 'bold', color: 'black', margin: '10px',
+						height: 'auto', width: 'auto', fontWeight: 'bold', color: 'black', margin: '2%',
 						backgroundColor: tag2Error ? 'red' : 'rgb(88, 175, 221)'
-					}} type='submit'>Add Tag2</Button>
+					}} type='submit'>Add <br /> Tag2</Button>
 				</form>
 			</div>
 			<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', }}>
@@ -104,12 +105,12 @@ const TagForm = ({ updateTags }) => {
 							setTag3(e.target.value);
 							setTag3Error(e.target.value.length > 10);
 						}}
-						style={{ height: '50px', width: '80%', margin: '10px', borderColor: tag3Error ? 'red' : '', }}
+						style={{ borderColor: tag3Error ? 'red' : '', }}
 					/>
-					<Button className='btn' style={{
-						height: 'auto', width: 'auto', fontWeight: 'bold', color: 'black', margin: '10px',
+					<Button className='botonPublic' style={{
+						height: 'auto', width: 'auto', fontWeight: 'bold', color: 'black', margin: '2%',
 						backgroundColor: tag3Error ? 'red' : 'rgb(88, 175, 221)'
-					}} type='submit'>Add Tag3</Button>
+					}} type='submit'>Add <br /> Tag3</Button>
 				</form>
 			</div>
 		</div>
