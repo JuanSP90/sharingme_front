@@ -31,10 +31,18 @@
     width: 70%;
 }
 
-/* .contador {
+.contador {
     max-width: 100%;
     font-size: 3rem;
-} */
+}
+
+
+
+.botonXplore {
+    margin-top: 5%;
+    max-width: 50%;
+    font-size: 3rem;
+}
 
 @media (max-width: 767px) {
     #imagenContainerHome {
@@ -42,7 +50,15 @@
     }
 
     .contador {
-        max-width: 100%;
+        width: 100%;
         font-size: 1.5rem;
+    }
+
+    .botonXplore {
+        margin-top: 5%;
+        width: auto;
+        font-size: smaller;
+        padding: 10%;
+
     }
 }
