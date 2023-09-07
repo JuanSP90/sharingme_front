@@ -3,12 +3,15 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100vw;
+    overflow: hidden;
 }
 
 #mainHome {
     display: flex;
     flex-direction: row;
     margin-top: 2%;
+    /* width: 100%; */
 }
 
 #loginformHome {
@@ -28,8 +31,18 @@
     width: 70%;
 }
 
+/* .contador {
+    max-width: 100%;
+    font-size: 3rem;
+} */
+
 @media (max-width: 767px) {
     #imagenContainerHome {
         display: none;
+    }
+
+    .contador {
+        max-width: 100%;
+        font-size: 1.5rem;
     }
 }
