@@ -26,7 +26,7 @@ const Location = ({ addLocation, loggedIn }) => {
             <input
                 className='formulario'
                 type="text"
-                placeholder="Insert your City"
+                placeholder="Insert your Location"
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
                 style={{ height: '50px', width: '80%', margin: '10px' }}

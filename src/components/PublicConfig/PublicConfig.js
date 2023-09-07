@@ -108,9 +108,7 @@ const PublicConfig = () => {
                         },
                     }
                 );
-                console.log('realod antes', reload)
                 setReload(!reload);
-                console.log('reload despues', reload)
                 getMyProfile();
                 hideModal()
             } catch (error) {

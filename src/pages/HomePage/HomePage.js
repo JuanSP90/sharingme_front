@@ -73,7 +73,7 @@ const HomePage = () => {
                 }}
             >
                 <div class="twelve">
-                    <h1> <span style={{ color: 'rgb(125, 239, 125)' }}>{uniqueLocationCount}</span> Cities, <span style={{ color: 'rgb(88, 175, 221)' }}>{userCount}</span> Users</h1>
+                    <h1> <span style={{ color: 'rgb(125, 239, 125)' }}>{uniqueLocationCount}</span> Locations, <span style={{ color: 'rgb(88, 175, 221)' }}>{userCount}</span> Users</h1>
                 </div>
                 <Map />
             </div>

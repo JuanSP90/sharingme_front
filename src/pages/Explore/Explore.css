@@ -18,5 +18,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px
+    margin: 5%
+}
+
+@media (max-width: 900px) {
+    .ExploreCardContainer {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+
+    }
 }
