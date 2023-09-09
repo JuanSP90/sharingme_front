@@ -12,9 +12,6 @@ export const AuthContextProvider = ({ children }) => {
     const URLBACKEND = process.env.REACT_APP_URL_BACKEND;
 
     const getMyProfile = async () => {
-        // if (!window.localStorage.getItem('token')) {
-        //     return navigate('/')
-        // };
         try {
             const response = await axios.get(`${URLBACKEND}/users/me`, {
                 headers: {
@@ -25,7 +22,7 @@ export const AuthContextProvider = ({ children }) => {
             return response.data.userName
 
         } catch (error) {
-            // return navigate('/')
+            console.error(error)
         };
 
     };
