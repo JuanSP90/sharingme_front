@@ -25,7 +25,7 @@ export const AuthContextProvider = ({ children }) => {
             return response.data.userName
 
         } catch (error) {
-            return navigate('/')
+            // return navigate('/')
         };
 
     };
